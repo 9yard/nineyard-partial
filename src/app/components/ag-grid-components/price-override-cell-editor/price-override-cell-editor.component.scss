@@ -1,0 +1,42 @@
+:host {
+    display: flex;
+    line-height: initial;
+    height: 100%;
+}
+
+.price-editor {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xs);
+    &_actions {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: var(--space-xxs)
+    }
+    &_input {
+        width: 100%;
+        input {
+            width: 100%;
+            border: none;
+            background: none;
+            &:focus {
+                border-bottom: 1px solid var(--gray-3);
+            }
+        }
+    }
+
+    .fal.fa-check {
+        color: var(--color-success);
+    }
+}
+
+.icon-action {
+    padding: var(--space-xxs) var(--space-xs);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    &:hover, &--active {
+        background-color: var(--gray-2);
+    }
+}

@@ -1,0 +1,16 @@
+<div *ngIf="amountInShipment">
+  <b>{{ amountInShipment }}</b> in shipments
+</div>
+<div *ngIf="!amountInShipment"></div>
+<input
+  type="number"
+  tabindex="2"
+  min="0"
+  (click)="inputClicked($event)"
+  [disabled]="
+    shipyardService.shipmentTypeToAddToShipment &&
+    shipyardService.shipmentTypeToAddToShipment !== this.params.data.FbaType
+  "
+  [(ngModel)]="amount"
+  (ngModelChange)="amountChanged($event)"
+/>

@@ -1,0 +1,34 @@
+<app-dialog
+  [title]="'Create multiple boxes'"
+  [actions]="[
+    { text: 'Cancel', buttonStyle: 'underline' },
+    { text: 'Confirm', isDisabled: !createBoxesForm.valid }
+  ]"
+  (action)="action($event)"
+  (close)="close()"
+>
+  <div class="form" [formGroup]="createBoxesForm">
+    <div class="input-container">
+      <label for="" class="input-container_label">Amount to box</label>
+      <input
+        type="number"
+        class="input-container_input"
+        [min]="0"
+        formControlName="amount"
+      />
+    </div>
+
+    <div class="input-container">
+      <label for="" class="input-container_label">Amount per box</label>
+      <input
+        type="number"
+        class="input-container_input"
+        [min]="0"
+        [max]="createBoxesForm.value.amount"
+        formControlName="amountPerBox"
+      />
+    </div>
+
+    <div></div>
+  </div>
+</app-dialog>

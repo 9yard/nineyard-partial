@@ -1,0 +1,63 @@
+
+.marketplace {
+    padding: var(--space-md);
+    border-radius: var(--border-radius-sm);
+    border: 2px solid var(--color-gray-2);
+    &_header {
+        display: flex;
+        gap: var(--space-md);
+        align-items: center;
+    }
+    &_icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        grid-area: icon;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 13px;
+        background: #fff;
+
+    }
+    &_name {
+        font-size: var(--text-xl);
+        font-family: var(--font-bold);
+        text-transform: capitalize;
+    }
+    &_action {
+        margin-left: auto;
+    }
+
+    &_body {
+        border-top: 2px solid var(--color-gray-2);
+        margin-top: var(--space-md);
+        padding-top: var(--space-md);
+    }
+}
+
+
+.connection {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-md);
+    &_item {
+        display: grid;
+        grid-template: "name action" auto
+                        "id action" auto /
+                        1fr 110px;
+        width: 100%;
+    }
+    &_name {
+        grid-area: name;
+        font-family: var(--font-bold);
+    }
+    &_id {
+        grid-area: id;
+        color: var(--color-gray-6);
+    }
+    &_action {
+        grid-area: action;
+    }
+}

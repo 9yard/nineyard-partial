@@ -1,0 +1,69 @@
+<div class="header">
+  <div class="header_left">
+    <div class="header_title">{{ headerService.title | async }}</div>
+    <!-- <div class="header_breadcrumbs">
+      <div class="header_breadcrumb">Shipyard</div>
+      <div class="header_breadcrumb">Sku List</div>
+    </div> -->
+  </div>
+  <div class="header_actions">
+    <div class="header_action">
+      <div
+        class="processing"
+        *ngIf="processes.length"
+        #processingElement
+        (click)="openProcesses()"
+      >
+        <div class="processing_title">
+          {{ processes.length }} processes running
+        </div>
+        <!-- <div class="processing_status">
+          Shipment sync in progress
+        </div> -->
+        <div class="processing_icon">
+          <i class="fal fa-chevron-down"></i>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="header_action"><i class="fal fa-search"></i></div> -->
+    <!-- <div
+      class="header_action"
+      [ngClass]="{ header_action: hasUpdates }"
+      (click)="openUpdatesDialog()"
+    >
+      <i class="fal fa-bell"></i>
+    </div> -->
+  </div>
+  <div class="header_account-selector">
+    <div class="input-container">
+      <mat-select
+        [(ngModel)]="selectedAccount"
+        (ngModelChange)="accountSelected()"
+        class="input-container_input input-container_input--select input-container_input--thin"
+        [disabled]="accountDropdownDisabled"
+      >
+        <mat-option
+          *ngFor="let account of accounts | async"
+          [value]="account.name"
+        >
+          <span class="input-container_option-icon">
+            <app-channal-icon
+              [channal]="account.type"
+              [gray]="true"
+            ></app-channal-icon>
+          </span>
+          <span class="input-container_option-text">
+            {{ account.name }}
+          </span>
+        </mat-option>
+
+        <!-- <mat-option
+          *ngFor="let account of allMarketPlaces | async"
+          [value]="account.name"
+        >
+          {{ account.name }}
+        </mat-option> -->
+      </mat-select>
+    </div>
+  </div>
+</div>

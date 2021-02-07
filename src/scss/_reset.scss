@@ -1,0 +1,177 @@
+@import "var";
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+body {
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--black);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Common CSS
+    ========================================================================== */
+ol,
+ul {
+  list-style: none;
+}
+
+a,
+.btn {
+  transition: all 0.5s ease;
+}
+a:active,
+a:hover,
+a:focus,
+.btn:focus,
+.btn:active,
+.btn:hover {
+  outline: 0;
+}
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:focus,
+a:hover {
+  color: var(--black);
+  text-decoration: none;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 72%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.4em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+*:focus {
+  outline: 0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+.hidden {
+  visibility: hidden;
+}
+.block {
+  display: block;
+}

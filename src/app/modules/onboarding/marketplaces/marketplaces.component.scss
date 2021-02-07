@@ -1,0 +1,23 @@
+:host {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.marketplace {
+  &_list {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-md);
+    max-height: calc(100vh - 435px);
+    overflow: auto;
+  }
+}
+
+app-button {
+  display: block;
+  justify-self: center;
+}
+
+app-page-container-button-group {
+  margin-top: 0;
+}

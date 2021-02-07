@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-fancy);
+  text-transform: capitalize;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  white-space: nowrap;
+  &:after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--gray-1);
+    margin-left: var(--space-sm);
+  }
+  &.center {
+    width: 100%;
+    text-align: center;
+    display: block;
+    &:after {
+      display: none;
+    }
+  }
+}

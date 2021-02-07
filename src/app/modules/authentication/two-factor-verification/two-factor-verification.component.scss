@@ -1,0 +1,17 @@
+.form-control,
+.btn {
+  width: 342px; 
+}
+.form_group_two_factor {
+    display: inline-grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 16px;
+
+    .form-control {
+        width: 60px;
+        height: 80px;
+        text-align: center;
+        border-radius: 0;
+        font-size: 28px;
+    }
+}

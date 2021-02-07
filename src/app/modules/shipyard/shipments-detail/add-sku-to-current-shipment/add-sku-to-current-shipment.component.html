@@ -1,0 +1,58 @@
+<app-dialog
+  [title]="'Add SKU to shipment'"
+  [actions]="[
+    { text: 'Cancel', buttonStyle: 'underline' },
+    { text: 'Confirm' }
+  ]"
+  (action)="action($event)"
+  (close)="action($event)"
+>
+  <div class="add-sku">
+    <div class="add-sku_form" [formGroup]="skuForm">
+      <div class="input-container">
+        <label for="" class="input-container_label">Search SKUs</label>
+        <input
+          type="text"
+          class="input-container_input"
+          formControlName="skuAutocomplete"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith">
+          <mat-option
+            *ngFor="let option of filteredOptions$ | async"
+            [value]="option"
+          >
+            {{ option.sku }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+
+      <div class="input-container">
+        <label for="" class="input-container_label">Quantity</label>
+        <input
+          type="text"
+          class="input-container_input"
+          [value]="1"
+          formControlName="skuQty"
+        />
+      </div>
+
+      <div class="add-sku_button">
+        <app-button [buttonSize]="'action'" (click)="loadSku()"
+          >Add SKU</app-button
+        >
+      </div>
+    </div>
+
+    <div class="add-sku_list" *ngIf="selectedSKUs.length">
+      <div class="add-sku_list-title">Selected SKUs</div>
+      <app-shipment-sku
+        [box]="true"
+        [sku]="sku"
+        (updateQty)="updateQty(sku)"
+        (removeSku)="removeSku(sku)"
+        *ngFor="let sku of selectedSKUs"
+      ></app-shipment-sku>
+    </div>
+  </div>
+</app-dialog>

@@ -1,0 +1,40 @@
+@import './variable.scss';
+
+.grid_print_label {
+    border: 1px solid rgba($color: black, $alpha: 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.grid_print_label_body_content,
+.grid_print_label_body_content2,
+.grid_print_label_header {
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    grid-gap: 25px;
+    align-items: center;
+    padding: 0 20px;
+
+}
+
+.grid_print_label_header {
+    height: 30px;
+    background-color: $little_light_grey;
+
+    .fas {
+        color: $mid_grey4;
+    }
+}
+
+.grid_print_label_body_content,
+.grid_print_label_body_content2 {
+    height: 53px;
+    border-top: 1px solid rgba($color: black, $alpha: 0.1);
+
+    .input_in_grid_print_label {
+        width: 52px !important;
+        height: 30px !important;
+        text-align: center;
+        background-color: white !important;
+    }
+}

@@ -1,0 +1,150 @@
+<app-page-container>
+  <app-page-container-devider [title]="'Printers'"></app-page-container-devider>
+  <app-page-container-group>
+    <form>
+      <div class="gap_x_p_2pt5 system_gap">
+        <h4
+          class="font_size_16 font-weight-600 tk-roc-grotesk gap_top_1pt5 gap_b_p_3"
+        >
+          Defaults
+        </h4>
+        <form class="label_printer" [formGroup]="boxLabelPrinterForm">
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+              >Box Label Printer:</label
+            >
+            <div class="select_holder position-relative">
+              <i class="fal fa-angle-down"></i>
+              <select class="form-control print_form" formControlName="printer">
+                <option [value]="prntr" *ngFor="let prntr of printers">
+                  {{ prntr }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+              >Width:</label
+            >
+            <div class="input-group mb-3">
+              <input
+                type="number"
+                numberWithDecimal
+                (click)="$event.target.select()"
+                class="form-control"
+                formControlName="width"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">In</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+              >Height:</label
+            >
+            <div class="input-group mb-3">
+              <input
+                type="number"
+                numberWithDecimal
+                (click)="$event.target.select()"
+                class="form-control"
+                formControlName="height"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">In</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"></label>
+            <button
+              (click)="saveLabelPrinter('box')"
+              [style.cursor]="
+                boxLabelPrinterForm.invalid ? 'no-drop' : 'pointer'
+              "
+              [disabled]="boxLabelPrinterForm.invalid"
+              class="form-control print_form btn-primary"
+            >
+              Save <i class="fa fa-sync fa-spin ml-2" *ngIf="loading.box"></i>
+            </button>
+          </div>
+        </form>
+        <form class="label_printer mt-3" [formGroup]="skuLabelPrinterForm">
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+              >Sku Label Printer:</label
+            >
+            <div class="select_holder position-relative">
+              <i class="fal fa-angle-down"></i>
+              <select class="form-control print_form" formControlName="printer">
+                <option [value]="prntr" *ngFor="let prntr of printers">
+                  {{ prntr }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+              >Width:</label
+            >
+            <div class="input-group mb-3">
+              <input
+                type="number"
+                numberWithDecimal
+                (click)="$event.target.select()"
+                class="form-control"
+                formControlName="width"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">In</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+              >Height:</label
+            >
+            <div class="input-group mb-3">
+              <input
+                type="number"
+                numberWithDecimal
+                (click)="$event.target.select()"
+                class="form-control"
+                formControlName="height"
+              />
+              <div class="input-group-append">
+                <span class="input-group-text">In</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-600 tk-roc-grotesk gap_bottom_10"></label>
+            <button
+              (click)="saveLabelPrinter('sku')"
+              [style.cursor]="
+                skuLabelPrinterForm.invalid ? 'no-drop' : 'pointer'
+              "
+              [disabled]="skuLabelPrinterForm.invalid"
+              class="form-control print_form btn-primary"
+            >
+              Save <i class="fa fa-sync fa-spin ml-2" *ngIf="loading.sku"></i>
+            </button>
+          </div>
+        </form>
+        <div>
+         
+          <label class="ml-2"
+            >
+            <mat-checkbox
+            (change)="includedFnSkuClick()"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="includedFnSku"
+          >
+          </mat-checkbox> Include SKU & QTY label when printing FNSKU labels</label
+          >
+        </div>
+      </div>
+    </form>
+  </app-page-container-group>
+</app-page-container>

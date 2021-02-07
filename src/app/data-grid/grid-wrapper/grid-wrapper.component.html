@@ -1,0 +1,77 @@
+<div class="actions">
+  <div
+    class="actions_grid-actions actions_grid-actions--left"
+    *ngIf="gridActionsService.selectedRows.length"
+  >
+    <div class="actions_actions-label">
+      {{ gridActionsService.selectedRows.length }} row{{
+        gridActionsService.selectedRows.length > 1 ? "s" : ""
+      }}
+      selected:
+    </div>
+    <app-button
+      [buttonSize]="'action'"
+      *ngIf="shipyardService.skusToAddToShipment.length"
+      (click)="gridActionsService.createDraft()"
+      >Add to Shipment</app-button
+    >
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.printFNSKU()"
+      >Print FNSKU Label</app-button
+    >
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.toggleActivate(true)"
+      >Activate</app-button
+    >
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.toggleActivate(false)"
+      >Deactivate</app-button
+    >
+  </div>
+
+  <div class="actions_grid-actions actions_grid-actions--right">
+    <div class="actions_actions-label">Side Pane:</div>
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.toggleSidePane()"
+    >
+      {{ gridActionsService.currentPaneSetting + " Pane" | titlecase }}
+      {{ gridActionsService.currentPaneSetting === "" ? "Closed" : "" }}
+    </app-button>
+    <div class="actions_actions-devider"></div>
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.resetTable()"
+      >Reset Columns</app-button
+    >
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.resetFilters()"
+      *ngIf="(gridActionsService.selectedFilters | json) !== '{}'"
+      >Reset Filters</app-button
+    >
+    <app-button
+      [buttonSize]="'action'"
+      (click)="gridActionsService.importFromAmazon()"
+      >Import from Amazon</app-button
+    >
+  </div>
+</div>
+
+<div
+  class="grid"
+  style="width: 100%; height: 100%"
+  *ngIf="skuGridBaseConfigService.accounts"
+>
+  <ag-grid-angular
+    style="width: 100%; height: 100%"
+    class="ag-theme-alpine"
+    [gridOptions]="gridOptions"
+    [columnDefs]="columnDefs"
+    [modules]="modules"
+  >
+  </ag-grid-angular>
+</div>

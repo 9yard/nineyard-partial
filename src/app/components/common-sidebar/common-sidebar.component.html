@@ -1,0 +1,106 @@
+<div class="sidebar" #left_part_holder [ngClass]="{ 'sidebar--collapsed': isSidebarToggled }">
+  <div
+    class="d-flex align-items-center logo-bar"
+   
+  >
+    <app-logo></app-logo>
+
+    <button (click)="toggleMenu()" class="togglebtn">
+      <i class="fal fa-angle-left"></i>
+    </button>
+  </div>
+
+  <div class="menu-bar">
+    <div class="nav-bar">
+      <mat-accordion [displayMode]="'flat'" [multi]="true">
+        <mat-expansion-panel
+          hideToggle
+          [expanded]="!isSidebarToggled && panel.isActive"
+          (opened)="openSidebar()"
+          class="nav-bar_item nav-bar_item--group-link"
+          *ngFor="let navRoute of navRoutes"
+          routerLinkActive
+          #panel="routerLinkActive"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div class="nav-bar_link">
+                <span
+                  class="nav-bar_icon"
+                  [style.backgroundImage]="'url(' + navRoute.iconUrl + ')'"
+                ></span>
+                <span
+                  class="nav-bar_link-text"
+                  [ngClass]="{ 'nav-bar_link-text--hidden': isSidebarToggled }"
+                  >{{ navRoute.name }}</span
+                >
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <ul>
+            <li
+              class="nav-bar_item"
+              *ngFor="let childRoute of navRoute.children"
+            >
+              <a
+                class="nav-bar_link nav-bar_link--child-link"
+                [routerLinkActive]="'active'"
+                routerLink="{{ childRoute.url }}"
+                >{{ childRoute.name }}</a
+              >
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <!-- Loading data Message  -->
+    <div class="loadingData-msg" *ngIf="showLoginError">
+      <p>We are still in the middle of loading your information.</p>
+      <p>Thanks for your patience.</p>
+      <div class="loader">
+        <img src="assets/images/nineyard-loading.gif" class="loader-img" />
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="profile_name">{{ userInfo?.username }}</div>
+      <a
+        class="profile_icon"
+        [matMenuTriggerFor]="profilehover"
+        #profilehoverTrigger="matMenuTrigger"
+        (click)="buttonEnter(profilehoverTrigger)"
+      >
+      <i class="fal fa-user-circle"></i></a>
+    </div>
+  </div>
+</div>
+
+<mat-menu
+  #profilehover="matMenu"
+  class="profliehover-menu"
+  direction="right"
+  yPosition="above"
+>
+  <div>
+    <h5 class="name">
+      {{ userInfo?.username }} <span>{{ userInfo?.role }}</span>
+    </h5>
+    <h5 *ngIf="userInfo?.role != 'Admin'" class="email">
+      {{ userInfo?.email }}
+    </h5>
+    <div class="link">
+      {{ userInfo?.company }}
+    </div>
+    <div *ngIf="userInfo?.role != 'Admin'" class="link">
+      <a
+        *ngIf="userInfo?.role != 'Admin'"
+        href="javasript:void(0)"
+        >Change Password</a
+      >
+    </div>
+    <div class="link">
+      <a href="javasript:void(0)" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</mat-menu>

@@ -1,0 +1,15 @@
+.feature-explenation {
+    padding: var(--space-lg);
+    background: var(--color-primary-light) url('../../../assets/images/nineyard-pattern.png') bottom right no-repeat;
+    background-size: 120px;
+    border-radius: var(--border-radius-md);
+    &_title {
+        margin-bottom: var(--space-md);
+        color: var(--color-primary);
+        font-size: var(--text-lg);
+        font-family: var(--font-bold);
+    }
+    &_text {
+
+    }
+}

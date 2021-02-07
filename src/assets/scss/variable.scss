@@ -1,0 +1,86 @@
+$primary_color: #3B6EFF;
+$secondary_color: #CF001A;
+$black_color: #000000;
+$red_color:  #F35555;
+$gray_color: #e5e5e5;
+$white_color: #ffffff;
+$danger_color: #CF001A;
+$light_grey: #f9f9f9;
+
+$danger_light_color: rgba(
+    $color: $danger_color,
+    $alpha: 0.2,
+);
+$primary_light_color: rgba(
+    $color: $primary_color,
+    $alpha: 0.25,
+);
+$primary_active_color: rgba(
+    $color: $primary_color,
+    $alpha: 0.1,
+);
+
+$primary_active_solid_color:  #EBF0FF;
+
+
+
+$primary_dark: #277426;
+$primary_hover_color: rgba(44, 185, 8, 0.6);
+$primary_light: rgba(44, 185, 8, 0.2);
+$bright_green: #00e6a7; 
+$dark_green: #085440;
+
+$danger_color2: #CF001A;
+$anchor_primary: #3B6EFF;
+$blue_color: #3B6EFF;
+$for_opaque_grey: #c4c4c4;
+$for_opague_grey2: #dfdfdf;
+
+$light_grey2: #f6f4ef;
+$little_light_grey: #e5e5e5;
+$light_dark_grey: #cec1c1;
+$mid_grey: #bcbcbc;
+$mid_grey2: #aaaaaa;
+$mid_grey3: #777777;
+$mid_grey4: #d0d0d0;
+$dark_grey: #616161;
+$dark_grey2: #5e5c5c;
+$light_black: #0a0603;
+$light_black2: #1e1e1e;
+$purple: #0f306e;
+$paragraph_color: #969696;
+$account: #9921d1;
+$opaque_grey: rgba(
+    $color: $for_opaque_grey,
+    $alpha: 0.2,
+);
+$opaque_grey_dark: rgba(
+    $color: $for_opaque_grey,
+    $alpha: 0.6,
+);
+$opague_grey2: rgba(
+    $color: $for_opague_grey2,
+    $alpha: 0.6,
+);
+$opague_grey2_light: rgba(
+    $color: $for_opague_grey2,
+    $alpha: 0.2,
+);
+$opague_grey2_dark: rgba(
+    $color: $for_opague_grey2,
+    $alpha: 1,
+);
+$button_color: #3f1bff;
+$light_yellow: #fffdd2;
+
+// New Colors
+$primary_color_n: #3b6eff;
+$primary_color_n_black: #0a0603;
+$product_red: #cf001a;
+$product_blue: #21a3ed;
+$product_yellow: #ebef2c;
+$product_orange: #ffab00;
+$product_purple: #5c0dd6;
+$product_aqua: #6c92ff;
+$bright_green2: #21D499;
+$alert_color2:#E30078;

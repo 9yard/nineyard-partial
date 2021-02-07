@@ -1,0 +1,278 @@
+<app-page-container>
+  <app-page-container-devider [title]="'Profile'"></app-page-container-devider>
+  <app-page-container-group>
+    <form
+      class="gap_top_3pt4"
+      [formGroup]="profileForm"
+      (ngSubmit)="submitProfileForm()"
+    >
+      <div class="apop_block">
+        <div class="form-group">
+          <label
+            class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+            for="username"
+            >Username:</label
+          >
+          <input
+            readonly
+            disabled
+            (keyup)="showSubmitBtn = true"
+            class="form-control"
+            type="text"
+            formControlName="username"
+            id="username"
+          />
+        </div>
+        <div class="form-group">
+          <label
+            class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+            for="email"
+            >Email:</label
+          >
+          <input
+            autocomplete="off"
+            (keyup)="showSubmitBtn = true"
+            class="form-control"
+            type="email"
+            formControlName="email"
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            id="email"
+            (ngModelChange)="verifyEmail()"
+          />
+          <span
+            class="danger_color2 mt-2"
+            *ngIf="
+              profileForm.controls.email.invalid &&
+              profileForm.controls.email.value &&
+              profileForm.controls.email.dirty &&
+              profileForm.controls.email.touched
+            "
+          >
+            Invalid email address.
+          </span>
+          <span class="danger_color2 mt-2" *ngIf="emailError">
+            {{ emailError }}
+          </span>
+        </div>
+        <div class="form-group">
+          <label
+            class="font-weight-600 tk-roc-grotesk gap_bottom_10"
+            for="username"
+            >Company:</label
+          >
+          <input
+            (keyup)="showSubmitBtn = true"
+            class="form-control"
+            type="text"
+            formControlName="company"
+          />
+        </div>
+      </div>
+      <div class="flex_center gap_top_5 button-group">
+        <app-button
+        [buttonSize]="'small'"
+        [buttonColor]="'accent'"
+        (click)="openChangePasswordPopup()"
+          href="javascript:void(0)"
+        >Change Password</app-button>
+
+        <app-button
+        [buttonSize]="'small'"
+        (click)="openChangePasswordPopup()"
+          href="javascript:void(0)"
+          [hidden]="!profileForm.valid || !showSubmitBtn || !emailVerified"
+        >Save</app-button>
+      </div>
+    </form>
+  </app-page-container-group>
+
+  <app-page-container-devider [title]="'Users'"></app-page-container-devider>
+  <app-page-container-group>
+    <div *ngFor="let user of users">
+      <div
+        class="useblock_one"
+        *ngIf="user.userId !== main.datavancedLoggedUser.userId"
+      >
+        <div class="useblock_left">
+          <div class="useblock_pic">
+            <img
+              alt="aws"
+              class="img-fluid"
+              [src]="'assets/images/default_user.png'"
+            />
+          </div>
+          <div class="useblock_text">
+            <h1 class="font-weight-600">{{ user.userName }}</h1>
+            <div
+              class="d-inline-flex justify-content-between align-items-center"
+            >
+              <p
+                class="font_size_12 mr-2"
+                #editable
+                (dblclick)="
+                  main.datavancedLoggedUser.role === 'Admin'
+                    ? editableOn(user)
+                    : null
+                "
+              >
+                {{ user.role }}
+              </p>
+              <i
+                class="fal fa-angle-down pointer"
+                (mouseenter)="customTooltip($event)"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div
+          class="useblock_right"
+          *ngIf="main.datavancedLoggedUser?.role === 'Admin'"
+        >
+          <div class="useblock_icon">
+            <i
+              *ngIf="false"
+              class="fal fa-history pointer"
+              (click)="openSettingsHistory()"
+            ></i>
+          </div>
+          <div class="useblock_delt d-flex align-items-center">
+            <p class="ont_size_14 pointer" (click)="deleteUser(user.userId)">
+              DELETE
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="account_popup_button gap_top_5 d-flex justify-content-center gap_b_p_5"
+    >
+    <app-button
+        [buttonSize]="'small'"
+        routerLink="/account/register-team-member" 
+          href="javascript:void(0)"
+        >New user</app-button>
+      
+    </div>
+  </app-page-container-group>
+
+  <app-page-container-devider
+    [title]="'Warehouses'"
+  ></app-page-container-devider>
+  <app-page-container-group>
+    <div
+      class="warehouses_popup_button gap_top_5 d-flex justify-content-center gap_b_p_5"
+    >
+
+      <app-button
+      *ngIf="role === 'Admin'"
+      (click)="openEditWarehouse('New')"
+        >New Warehouse</app-button>
+    </div>
+    <div class="ware_block">
+      <div class="warehouses_one" *ngFor="let warehouse of warehouses">
+        <div class="d-flex justify-content-end">
+          <h1 class="font_size_20 mb-0 font-weight-600">
+            {{ warehouse.name }}
+          </h1>
+          <div class="ml-auto">
+            <i
+              class="far fa-trash-alt pointer font-16 text-danger gap_right_2"
+              (click)="deleteWareHouse(warehouse.id)"
+            ></i>
+            <button
+              class="btn btn-primary btn-icon"
+              (click)="openEditWarehouse('edit', warehouse)"
+            >
+              <i class="fa fa-edit"></i>
+            </button>
+          </div>
+        </div>
+        <div class="detail">
+          <ul>
+            <li><label>Id:</label> {{ warehouse.id }}</li>
+            <li>
+              <label>Address:</label>
+              <div class="addressDetail">
+                <p class="font_size_13" *ngIf="false">Fullfils:</p>
+                <p class=" ">{{ warehouse.addressln1 }}</p>
+                <div
+                  class="input_block"
+                  [ngStyle]="{
+                    visibility: warehouse.isfba === 1 ? '' : 'hidden'
+                  }"
+                >
+                  <p *ngIf="false">FBA</p>
+                </div>
+                <div class="input_text">
+                  <p class=" ">{{ warehouse.addressln2 }}</p>
+                </div>
+
+                <div
+                  class="input_block"
+                  [ngStyle]="{
+                    visibility: warehouse.isfbm === 1 ? '' : 'hidden'
+                  }"
+                >
+                  <p *ngIf="false">FBM</p>
+                </div>
+                <div class="input_text">
+                  <p class=" ">
+                    {{ warehouse.city }} {{ warehouse.state }}
+                    {{ warehouse.country }}
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="enable_link">
+            <p style="visibility: hidden"></p>
+            <a
+              href="javascript:void(0)"
+              (click)="onToggleWhsIsFba(warehouse.id, true)"
+              *ngIf="warehouse.isfba == 1"
+              class="enabled font_size_14"
+              >Enabled</a
+            >
+            <a
+              href="javascript:void(0)"
+              (click)="onToggleWhsIsFba(warehouse.id, false)"
+              *ngIf="warehouse.isfba == 0"
+              class="disabled font_size_14"
+              >Disabled</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="overlayCustomTooltip"
+      #overlayCustomTooltip
+      (mouseenter)="closeCustomTooltip()"
+    ></div>
+    <div class="user_role_note" #imageWithSkuInfo>
+      <div class="user_role_note_content align-items-start p-2">
+        <div class="user_popup gap_b_p_3">
+          <h4 class="font_size_14 font-weight-600">Standard User</h4>
+          <p class="font_size_12">
+            Can view data, create shipments, print labels, & create tasks
+          </p>
+        </div>
+        <div class="user_popup gap_b_p_3">
+          <h4 class="font_size_14 font-weight-600">Manager</h4>
+          <p class="font_size_12">
+            Can close shipments, delete data, view reports, add/remove standard
+            users
+          </p>
+        </div>
+        <div class="user_popup">
+          <h4 class="font_size_14 font-weight-600">Super Admin</h4>
+          <p class="font_size_12">
+            Manage billing, connect/delete seller accounts, close account &
+            transfer ownership
+          </p>
+        </div>
+      </div>
+    </div>
+  </app-page-container-group>
+</app-page-container>

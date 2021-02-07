@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.loader {
+  display: block;
+  width: 200px;
+  height: 10px;
+  background-color: var(--gray-3);
+  margin: 0 20px;
+  border-radius: 50px;
+  animation-duration: 2.3s;
+  animation: loading 1s infinite;
+  transition: all ease-in 200ms;
+  transform-origin: center left;
+
+}
+
+@keyframes loading {
+  0% {
+    background-color: var(--gray-1);
+  }
+  50% {
+    background-color: var(--gray-2);
+
+  }
+  100% {
+    background-color: var(--gray-1);
+  }
+}

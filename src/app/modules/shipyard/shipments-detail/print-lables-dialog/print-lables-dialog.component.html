@@ -1,0 +1,19 @@
+<app-dialog
+  [title]="'Print Labels'"
+  [description]="'SKU: ' + data.sku.sku + '' + data.qty"
+  [actions]="[
+    { text: 'Cancel', buttonStyle: 'underline' },
+    { text: 'Confirm' }
+  ]"
+  (action)="action($event)"
+  (close)="close()"
+>
+  <div class="update-qty">
+    <div class="input-container">
+      <label for="" class="input-container_label"
+        >Amount of label to print</label
+      >
+      <input type="text" class="input-container_input" [value]="data.qty" />
+    </div>
+  </div>
+</app-dialog>

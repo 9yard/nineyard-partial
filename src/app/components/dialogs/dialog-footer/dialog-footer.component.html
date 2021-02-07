@@ -1,0 +1,10 @@
+<app-button
+  class="btn btn_primary"
+  [buttonStyle]="action.buttonStyle"
+  [buttonSize]="action.buttonSize"
+  [isDisabled]="action.isDisabled"
+  *ngFor="let action of actions"
+  (click)="emitAction(action.text)"
+>
+  {{ action.text }}
+</app-button>

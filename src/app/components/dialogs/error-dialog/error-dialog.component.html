@@ -1,0 +1,20 @@
+<app-dialog
+  [title]="data.title"
+  [actions]="data.actions"
+  (action)="action($event)"
+  (close)="action()"
+>
+  <div class="errors">
+    <div class="errors_item" *ngFor="let error of data.errors">
+      <div class="errors_reason">
+        {{ error.reason }}
+        <i
+          *ngIf="error.reason === 'SHIPPED_QTY_EXCEEDED_LIMIT'"
+          class="fal fa-info-circle"
+          matTooltip="Attempted to submit  {{ error.qty }} items"
+        ></i>
+      </div>
+      <div class="errors_sku"><b>SKU:</b> {{ error.sku || error.Sku }}</div>
+    </div>
+  </div>
+</app-dialog>

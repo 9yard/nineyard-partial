@@ -1,0 +1,116 @@
+@import "../../../../assets/scss/variable.scss";
+
+.main_container {
+    background-color: $light_grey;
+    height: 100vh;
+    overflow: auto; 
+    .card {
+        max-width: 767px;
+        border: 0;
+        margin: auto;
+        padding: 2rem;
+        height: calc(100vh - 172px);
+        .bg-gray{
+            padding: 30px;
+            background-color: #f9f9f9;
+          }
+          .title{ 
+          font-weight: 600;
+          font-size: 1rem;
+          text-decoration: underline;
+          padding-bottom: 1rem;
+          }
+    }
+}
+
+
+:host ::ng-deep { 
+  .privacyPage .ps .ps__rail-y {
+    opacity: 1;
+    background-color: #eee;
+}
+
+.privacyPage .ps .ps__rail-y .ps__thumb-y {
+    min-height: 12px;
+    width: 11px;
+}
+}
+
+/**/
+.termContent {
+  font-size: 15px;
+  overflow: auto;
+  padding-right: 18px;
+
+    .number-list .count {
+        margin-right: 1rem;
+    }
+  }
+  
+  .termContent h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: underline;
+    margin-bottom: 1.5rem;
+  }
+  
+  .termContent p {
+    line-height: 1.5rem;
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .termContent ul.list {
+    list-style: none;
+    counter-reset: my-sec-counter;
+    padding-left: 1rem;
+  }
+  
+  .termContent .loweralpha-list{ padding-left: 1rem;}
+  .termContent ul.list li, .termContent .loweralpha-list > li {position: relative;padding-left: 1.5rem;}
+  
+  .termContent ul.list > li:before {
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter) ". ";
+    position: absolute;
+    top: 1px;
+    left: 0;
+  }
+  .termContent ul.list ul,   .termContent .loweralpha-list{ counter-reset: alphabet-counter; }
+  .termContent ul.list li ul li:before,  .termContent .loweralpha-list > li:before {
+    counter-increment: alphabet-counter;
+    content: counter(alphabet-counter, lower-alpha) ". ";
+    position: absolute;
+    top: 1px;
+    left: 0;    font-weight: bold;
+  }
+  .termContent ul.roman-list{margin: 1.5rem 0;}
+  .termContent ul.list ol, .termContent ul.roman-list{counter-reset: lowerroman-counter; }
+  .termContent ul.list ol li, .termContent ul.roman-list li{ padding-left: 1.8rem; position: relative;}
+  .termContent ul.list li ol li:before{
+  counter-increment: lowerroman-counter;
+    content: "(" counter(lowerroman-counter, lower-roman) ") ";
+    position: absolute;
+    top: 1px;
+    left: 0;
+  }
+  .termContent ul.roman-list li:before{
+    counter-increment: lowerroman-counter;
+      content: "" counter(lowerroman-counter, lower-roman) ".";
+      position: absolute;
+      top: 1px;
+      left: 0;}
+  
+  span.bg-yellow {
+    background: yellow;
+    display: inline-block;
+  }
+
+  .termContent .discList li p {
+    margin-bottom: 0;
+}
+
+.termContent ul.discList {
+    list-style: disc;
+    padding-left: 2rem; margin-bottom: 1.5rem;
+}

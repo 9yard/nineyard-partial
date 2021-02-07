@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.shipment-preview {
+  padding: var(--space-md) 0;
+  display: grid;
+  grid-template:
+    "title icon" auto
+    "address icon" auto /
+    1fr 50px;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-3);
+  }
+  &_title {
+    font-size: var(--text-lg);
+    font-family: var(--font-bold);
+    grid-area: title;
+  }
+  &_address {
+    grid-area: address;
+    color: var(--color-gray-6);
+    font-family: var(--font-light);
+  }
+  &_icon {
+    grid-area: icon;
+    font-size: var(--text-lg);
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+  }
+  &_chips {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+  &_chip {
+    padding: 3px 12px;
+    border-radius: 50px;
+    background-color: var(--color-gray-2);
+    white-space: nowrap;
+    font-size: var(--text-sm);
+  }
+}

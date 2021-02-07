@@ -1,0 +1,35 @@
+@mixin marks {
+    .marks {
+        margin: 12px 8px 0 0 !important;
+
+        .mark {
+            background-color: $primary_color_n !important;
+            height: 2px !important;
+            margin-top: 2px !important;
+
+            &:nth-child(1) {
+                width: 7px !important;
+                margin-right: -3px !important;
+            }
+
+            &:nth-child(2) {
+                width: 12px !important;
+                margin-right: -2px !important;
+            }
+
+            &:nth-child(3) {
+                width: 12px !important;
+            }
+        }
+    }
+
+    .navigation_text {
+        color: $primary_color_n;
+        font-size: 17px !important;
+        // line-height: 21px;
+
+        sup {
+            display: none;
+        }
+    }
+}

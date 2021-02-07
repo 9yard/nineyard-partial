@@ -1,0 +1,18 @@
+<app-page-container>
+  <app-page-container-devider
+    [title]="'Connected Accounts'"
+  ></app-page-container-devider>
+  <app-page-container-group>
+    <div class="marketplace-list">
+      <app-marketplace-connections *ngFor="let marketplace of marketplaces" (refresh)="refreshAccounts()" [marketplace]="marketplace.name" [connectedAccounts]="marketplace.connectedAccount"></app-marketplace-connections>
+    </div>
+  </app-page-container-group>
+</app-page-container>
+
+<!-- 
+<app-button
+          [buttonSize]="'small'"
+          [buttonStyle]="'wire'"
+          (click)="onEditClick(item)"
+          >Edit</app-button
+        > -->

@@ -1,0 +1,28 @@
+<div ngDefaultControl>
+  <form [formGroup]="form">
+    <div class="input input--custom" *ngIf="custom">
+      <div class="input_increase-decrease">
+        <div class="fal fa-minus" *ngIf="!increase" ></div>
+        <div class="fal fa-plus"  *ngIf="increase"></div>
+      </div>
+      <input class="input_input input_input--custom" type="number" formControlName="custom" />
+      <app-input-switcher
+      (optionSelected)="togglePercentOrDollar($event)"
+      [options]="['dollar', 'percent']"
+      [selectedOption]="isPercent === 'P'  ? 'percent' : 'dollar'"
+      ></app-input-switcher>
+      <div class="input_select-icon" (click)="toggleInputType()">
+        <i class="fal fa-times"></i>
+      </div>
+    </div>
+    <div class="input input--select" *ngIf="!custom">
+      <select class="input_input input_input--select" formControlName="select">
+        <option value="Match">Match</option>
+        <!-- <option value="Beat">Beat</option> -->
+        <option value="BeatAggressively">Beat Aggressively</option>
+        <option value="Increase">Increase by</option>
+        <option value="Decrease">Decrease by</option>
+      </select>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,144 @@
+<app-page-container-devider
+  [title]="'What’s your default warehouse location?'"
+  [center]="true"
+></app-page-container-devider>
+
+
+<form [formGroup]="warehouseForm">
+  <div class="settings-form">
+    <div class="form-group">
+      <label for="warehouseid" class="control-label">Warehouse ID:</label>
+      <input
+        autocomplete="off"
+        type="text"
+        formControlName="Id"
+        class="form-control"
+        id="warehouseid"
+      />
+      <span *ngIf="warehouseIdError" class="danger_color2"
+        >Warehouse ID already exists</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="default_warehouse_name" class="control-label"
+        >Name your default warehouse:</label
+      >
+      <input
+        type="text"
+        autocomplete="doNotAutoComplete"
+        formControlName="Name"
+        class="form-control"
+        id="default_warehouse_name"
+      />
+    </div>
+
+    <div class="form-group span-2">
+      <label class="control-label">Address Line 1:</label>
+      <input
+        type="text"
+        formControlName="Addressln1"
+        class="form-control"
+        id="Addressln1"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Address Line 2:</label>
+      <input
+        type="text"
+        formControlName="Addressln2"
+        class="form-control"
+        id="Addressln2"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">City:</label>
+      <input
+        type="text"
+        formControlName="City"
+        class="form-control"
+        id="City"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">State:</label>
+      <div class="d-flex align-items-center position-relative">
+        <mat-form-field
+          appearance="fill"
+          class="statesearch mat-select-control mat-select-lg"
+        >
+          <mat-select
+            disableRipple
+            id="State"
+            formControlName="State"
+            disableOptionCentering
+            (click)="stateSearchClicked()"
+            panelClass="select-content-box select-control-search select-pb-0"
+          >
+            <div class="mat-select-search">
+              <i class="pointer fal fa-search"></i>
+              <input
+                type="text"
+                #stateSearchInput
+                (keyup)="filterStates($event.target.value)"
+                class="form-control"
+                placeholder="Search"
+              />
+            </div>
+            <div class="custom-scroll" style="max-height: 200px">
+              <mat-option
+                [value]="state.abbreviation"
+                *ngFor="let state of states"
+              >
+                {{ state.name }}</mat-option
+              >
+            </div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Country:</label>
+      <input
+        type="text"
+        readonly
+        formControlName="Country"
+        class="form-control"
+        id="Country"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Country Code:</label>
+      <input
+        type="text"
+        readonly
+        formControlName="CountryCode"
+        class="form-control"
+        id="CountryCode"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Postal:</label>
+      <input
+        type="number"
+        numbersOnly
+        formControlName="Postal"
+        class="form-control"
+        id="Postal"
+      />
+    </div>
+  </div>
+</form>
+
+<app-page-container-button-group>
+  <app-button [buttonStyle]="'underline'" (click)="goPrevious()"
+  >Previous</app-button
+>
+  <app-button [buttonStyle]="'primary'" (click)="goNext()" [isDisabled]="warehouseForm.invalid">Next</app-button>
+</app-page-container-button-group>

@@ -1,0 +1,52 @@
+<div class="new-connection">
+    <div class="new-connection_step-container">
+      <div class="new-connection_step-title">
+        1. Create your connection key in your marketplace
+      </div>
+      <app-button (click)="openWalmartPage()" [buttonSize]="'action'"
+        >Create Key</app-button
+      >
+    </div>
+    <form class="new-connection_step-container" [formGroup]="addAccountForm">
+      <div class="new-connection_step-title">
+        2. Enter seller ID and token provided by your marketplace
+      </div>
+      <div class="new-connection_data-inputs">
+        <div class="input-container">
+          <label for="" class="input-container_label"
+            >Name your Marketplace</label
+          >
+          <input
+            formControlName="name"
+            type="text"
+            class="input-container_input input-container_input--thin"
+          />
+        </div>
+
+        <div class="input-container">
+          <label for="" class="input-container_label">Key</label>
+          <input
+            type="text"
+            formControlName="key"
+            class="input-container_input input-container_input--thin"
+          />
+        </div>
+
+        <div class="input-container">
+          <label for="" class="input-container_label">Secret</label>
+          <input
+            formControlName="secret"
+            type="text"
+            class="input-container_input input-container_input--thin"
+          />
+        </div>
+      </div>
+    </form>
+    <div class="new-connection_action">
+      <app-button
+        [isDisabled]="!addAccountForm.valid"
+        (click)="saveNewMarketplace()"
+        >Save</app-button
+      >
+    </div>
+  </div>

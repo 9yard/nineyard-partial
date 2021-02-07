@@ -1,0 +1,10 @@
+<div
+  class="price"
+  *ngFor="let price of params.value"
+  [ngClass]="price.priceClass"
+>
+  <div class="price_amount">${{ price.price }}</div>
+  <div class="price_buybox-type"></div>
+</div>
+
+<div *ngIf="!params.value.length">N/A</div>

@@ -1,0 +1,23 @@
+.process {
+  padding: 10px var(--space-md);
+
+  &_title {
+    font-family: var(--font-bold);
+  }
+
+  &_status {
+    font-family: var(--font-thin);
+    color: var(--color-gray-5);
+    font-size: var(--text-sm);
+
+    &--success {
+      color: var(--color-success-5);
+      font-family: var(--font-bold);
+    }
+
+    &--error {
+      color: var(--color-accent);
+      font-family: var(--font-bold);
+    }
+  }
+}

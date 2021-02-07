@@ -1,0 +1,63 @@
+<div class="d-flex flex-wrap justify-content-start text-left">
+  <div class="card_content_7">
+    <div
+      class="d-flex justify-content-start custom_circular_checkbox"
+      [class.check_disabled]="i < 1"
+      [class.spinner]="i === 0"
+    >
+      <i class="circular_checked_green">
+        <i class="fal fa-check"></i>
+        <i class="fad fa-spinner-third"></i>
+      </i>
+      <span class="">Loading your FBA SKU’s....</span>
+    </div>
+
+    <div
+      class="d-flex justify-content-start custom_circular_checkbox gap_top_4pt5"
+      [class.check_disabled]="i < 2"
+      [class.spinner]="i === 1"
+    >
+      <i class="circular_checked_green">
+        <i class="fal fa-check"></i>
+        <i class="fad fa-spinner-third"></i>
+      </i>
+      <span class="">Calculating the shipping costs....</span>
+    </div>
+
+    <div
+      class="d-flex justify-content-start custom_circular_checkbox gap_top_4pt5"
+      [class.check_disabled]="i < 3"
+      [class.spinner]="i === 2"
+    >
+      <i class="circular_checked_green">
+        <i class="fal fa-check"></i>
+        <i class="fad fa-spinner-third"></i>
+      </i>
+      <span class="">Getting the billing setup...</span>
+    </div>
+
+    <div
+      class="d-flex justify-content-start custom_circular_checkbox gap_top_4pt5"
+      [class.check_disabled]="i < 4"
+      [class.spinner]="i === 3"
+    >
+      <i class="circular_checked_green">
+        <i class="fal fa-check"></i>
+        <i class="fad fa-spinner-third"></i>
+      </i>
+      <span class="">Adding your warehouse details</span>
+    </div>
+  </div>
+  <div *ngIf="i === 4" class="mt-4 w-100 text-center">
+    We are still loading your data from Amazon. <br />
+    Please note: import will take longer for larger accounts.
+    <p>Meanwhile you can start exploring nineyard!</p>
+  </div>
+</div>
+
+<app-page-container-button-group *ngIf="i === 4">
+  <app-button [buttonStyle]="'underline'" (click)="goPrevious()"
+  >Previous</app-button
+>
+  <app-button (click)="goNext()">Finish!</app-button>
+</app-page-container-button-group>

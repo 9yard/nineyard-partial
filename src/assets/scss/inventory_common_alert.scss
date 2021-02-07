@@ -1,0 +1,55 @@
+@import "./variable.scss";
+
+.sku_alert {
+  .s_alert_heading {
+    height: 60px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.2);
+    .header_margin {
+      margin-left: 20px;
+      height: 100%;
+      p {
+        margin-left: 16px;
+        color: $danger_color2;
+        font-size: 20px;
+      }
+      .bell_icon {
+        color: $danger_color2;
+        font-size: 18px;
+      }
+    }
+  }
+  .alert_bottom {
+    height: 60px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.2);
+
+    .grid_part_alert {
+      display: grid;
+      grid-template-columns: 55px 1fr auto;
+      grid-gap: 20px;
+      align-items: center;
+    }
+    .ab_padding {
+      padding: 0 26px 0 12px;
+      .number {
+        border-radius: 45px;
+        background: $light_grey2;
+        width: 55px;
+        height: 24px;
+        p {
+          color: $light_black;
+          font-size: 18px;
+        }
+      }
+      .text {
+        p {
+          font-size: 18px;
+
+          color: $light_black;
+        }
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

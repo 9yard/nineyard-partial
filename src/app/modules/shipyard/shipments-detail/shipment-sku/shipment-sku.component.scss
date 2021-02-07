@@ -1,0 +1,116 @@
+:host {
+  display: block;
+}
+
+.sku {
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xs);
+  cursor: move;
+
+  &--in-box {
+    box-shadow: none;
+    border-radius: none;
+    padding: var(--space-sm) 0;
+    border-radius: 0;
+    cursor: default;
+    &:not(.sku--last) {
+      border-bottom: 1px solid var(--color-gray-1);
+    }
+  }
+
+  &--not-movable {
+    cursor: default;
+  }
+  &--error {
+    background-color: #fff8f8;
+  }
+
+  &_image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 36px;
+    height: 36px;
+    mix-blend-mode: multiply;
+  }
+
+  &_qty {
+    width: 50px;
+
+    &--bold {
+      font-family: var(--font-bold);
+    }
+  }
+
+  &_number {
+    font-size: var(--text-sm);
+  }
+
+  &_done {
+    font-size: var(--text-sm);
+    color: var(--color-gray-4);
+
+    .fal {
+      font-size: var(--text-lg);
+      color: var(--color-success);
+    }
+  }
+
+  &_header {
+    width: 45%;
+  }
+
+  &_sku {
+    cursor: pointer;
+
+    &--highlighted {
+      color: var(--color-primary-5);
+    }
+  }
+
+  &_title {
+    font-size: var(--text-sm);
+    font-family: var(--font-thin);
+    color: var(--color-gray-6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    display: inline-block;
+  }
+
+  &_actions {
+    margin-left: auto;
+    transition: var(--transition-primary);
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--space-xs);
+  }
+
+  &_action,
+  &_more-actions {
+    cursor: pointer;
+    padding: 2px var(--space-xs);
+
+    &:hover {
+      background-color: var(--color-gray-1);
+    }
+    &--error {
+      color: var(--color-accent);
+    }
+  }
+
+  &_print-number {
+    width: 24px;
+    display: inline-block;
+    font-size: var(--text-xs);
+    margin-left: var(--space-sm);
+    color: var(--color-gray-6);
+  }
+}

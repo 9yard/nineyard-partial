@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  z-index: 1000;
+  position: relative;
+
+  ::ng-deep {
+    .cdk-drag-placeholder {
+      display: none !important;
+    }
+  }
+}
+:host(:not(.cdk-drop-list-receiving):not(.cdk-drop-list-dragging)) {
+  opacity: 0;
+  visibility: hidden;
+  //without this the drag and drop won't trigger
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+:host(.cdk-drop-list-dragging) {
+  .drop {
+    border: 3px dashed var(--color-accent-5);
+    background: var(--color-accent-2);
+  }
+}
+.drop {
+  padding: var(--space-xl);
+  border: 3px dashed var(--color-gray-2);
+  border-radius: var(--border-radius-sm);
+  margin: var(--space-md);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
+  text-transform: uppercase;
+  &_action {
+    padding: 0 var(--space-md);
+    background-color: var(--color-accent-5);
+    color: var(--white);
+    text-align: center;
+    border-radius: 50px;
+    font-family: var(--font-bold);
+  }
+  &_action-type {
+    color: var(--color-gray-5);
+    font-family: var(--font-bold);
+  }
+  &--dropped {
+    background: var(--color-accent-5);
+    .drop {
+      border: 3px dashed var(--color-accent-5);
+      &_action {
+        background: var(--white);
+        color: var(--color-accent-5);
+      }
+      &_action-type {
+        color: var(--white);
+      }
+    }
+  }
+  &--small {
+    padding: var(--space-xs);
+    margin: var(--space-xs);
+
+    border: 2px dashed var(--color-gray-2);
+    flex-flow: row nowrap;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,18 @@
+<div class="welcome">
+  <div class="onboard-img">
+    <img
+      class="img-fluid"
+      src="assets/images/onboarding-step1.png"
+      alt="onboarding step 1 image"
+    />
+  </div>
+  <h4 class="mt-4 font-weight-600 tk-roc-grotesk font_size_36 content_heading">
+    Welcome {{ username }}!
+  </h4>
+  <p class="mt-4 font_size_16">We are so glad you’re on board.</p>
+  <p class="font_size_16">Now let’s set you up for success!</p>
+  
+  <app-page-container-button-group>
+    <app-button (click)="goNext()" >Start</app-button>
+  </app-page-container-button-group>
+</div>

@@ -1,0 +1,72 @@
+<div class="new-connection">
+    <div class="new-connection_step-container">
+      <div class="new-connection_step-title">
+        1. Create your connection key in your marketplace
+      </div>
+      <app-button (click)="openAmazonMWSPage()" [buttonSize]="'action'"
+        >Create MWS App Key</app-button
+      >
+    </div>
+    <form class="new-connection_step-container" [formGroup]="addAccountForm">
+      <div class="new-connection_step-title">
+        2. Enter seller ID and token provided by your marketplace
+      </div>
+      <div class="new-connection_data-inputs">
+        <div class="input-container">
+          <label for="" class="input-container_label"
+            >Name your Marketplace</label
+          >
+          <input
+            formControlName="name"
+            type="text"
+            class="input-container_input input-container_input--thin"
+          />
+        </div>
+
+        <div class="input-container">
+          <label for="" class="input-container_label">Marketplace</label>
+          <select
+            formControlName="marketPlace"
+            type="text"
+            class="input-container_input input-container_input--thin"
+            placeholder="test"
+          >
+            <option value="" disabled selected hidden>
+              Select Marketplace
+            </option>
+            <option
+              [value]="market.marketplaceid"
+              *ngFor="let market of amazonMarkets"
+            >
+              {{ market.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="input-container">
+          <label for="" class="input-container_label">Seller ID</label>
+          <input
+            type="text"
+            formControlName="seller"
+            class="input-container_input input-container_input--thin"
+          />
+        </div>
+
+        <div class="input-container">
+          <label for="" class="input-container_label">Token</label>
+          <input
+            formControlName="token"
+            type="text"
+            class="input-container_input input-container_input--thin"
+          />
+        </div>
+      </div>
+    </form>
+    <div class="new-connection_action">
+      <app-button
+        [isDisabled]="!addAccountForm.valid"
+        (click)="saveNewMarketplace()"
+        >Save</app-button
+      >
+    </div>
+  </div>

@@ -1,0 +1,30 @@
+:host {
+  line-height: initial;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-xs);
+  height: 100%;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+input {
+  width: 100%;
+  padding: var(--space-xxs);
+  border-radius: var(--space-xxs);
+  border: 2px solid var(--color-gray-3);
+
+  &:focus {
+    border: 2px solid var(--color-primary-5);
+  }
+}
+
+div {
+  font-size: var(--text-sm);
+  color: var(--color-gray-6);
+  font-family: var(--font-thin);
+}

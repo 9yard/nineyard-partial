@@ -1,0 +1,90 @@
+<app-page-container-devider
+  [title]="'Billing Info'"
+  [center]="true"
+></app-page-container-devider>
+
+<div class="grey-info">
+  <div class="grey-info_title">
+    <p class="font-weight-600">Price:</p>
+    <h2 class="mt-2 font-weight-600 tk-roc-grotesk position-relative">
+      <sup class="">$</sup>{{ price }}
+    </h2>
+  </div>
+  <div class="grey-info_desc">
+    <p class="">
+      The price is for one channel per month. Your account will be charged at
+      first of each month.
+    </p>
+  </div>
+</div>
+
+<form [formGroup]="ccForm">
+  <div class="billing-form">
+    <div class="input-container">
+      <label for="username" class="input-container_label">CC Number:</label>
+      <input
+        [class.red-border]="
+          ccForm.get('creditCardNumber').touched &&
+          ccForm.get('creditCardNumber').invalid
+        "
+        formControlName="creditCardNumber"
+        class="input-container_input"
+        id="cc-number"
+        type="tel"
+        autocomplete="cc-number"
+        ccNumber
+      />
+    </div>
+    <div class="input-container">
+      <label for="username" class="input-container_label">Exp. Date:</label>
+      <input
+        [class.red-border]="
+          ccForm.get('expirationDate').touched &&
+          ccForm.get('expirationDate').invalid
+        "
+        formControlName="expirationDate"
+        class="input-container_input"
+        id="cc-exp-date"
+        type="tel"
+        autocomplete="cc-exp"
+        ccExp
+      />
+    </div>
+
+    <div class="input-container">
+      <label for="username" class="input-container_label">Name on card:</label>
+      <input
+        [class.red-border]="
+          ccForm.get('name').touched && ccForm.get('name').invalid
+        "
+        formControlName="name"
+        type="text"
+        class="input-container_input"
+        id="name"
+      />
+    </div>
+    <div class="input-container">
+      <label for="username" class="input-container_label">CVV:</label>
+      <input
+        [class.red-border]="
+          ccForm.get('cvc').touched && ccForm.get('cvc').invalid
+        "
+        formControlName="cvc"
+        class="input-container_input"
+        id="cc-cvc"
+        type="tel"
+        autocomplete="off"
+        ccCVC
+      />
+    </div>
+  </div>
+</form>
+
+<app-page-container-button-group>
+  <app-button [buttonStyle]="'underline'" (click)="goPrevious()"
+    >Previous</app-button
+  >
+  <app-button (click)="goNext()" [isDisabled]="!ccForm.valid || submittingCc"
+    >Next</app-button
+  >
+</app-page-container-button-group>

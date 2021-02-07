@@ -1,0 +1,65 @@
+@import "../../../../assets/scss/variable.scss";
+
+.history{
+    h5{
+        font-size:30px !important;
+    }
+    .fa-times{
+        font-size:36px !important;
+    }
+}
+.history_block{
+    display:grid;
+    grid-template-columns: 1fr 127px auto;
+    grid-column-gap: 60px;
+    align-items: center;
+    margin-bottom: 20px;
+     .history_one{
+         .history_text{
+             margin-right: 10px;
+             text-decoration: underline;
+         }
+         .icon_history{
+             font-size:14px;
+color:$blue_color;
+         }
+         .data_time{
+             color:$mid_grey;
+         }
+     }
+ 
+}
+@media (max-width: 691px){
+    .history_block{
+        p{
+            font-size: 11px !important;
+        }
+    }
+}
+
+@media (max-width: 618px){
+    .history_block{
+        grid-column-gap: 5px;
+        p{
+            font-size: 11px !important;
+        }
+    }
+}
+@media (max-width: 500px){
+    .history_block{
+        grid-template-columns: 1fr auto;
+    }
+    .history_block > div:nth-child(1){
+        grid-column: 1/3;
+     }
+     .history_block > div:nth-child(2){
+       justify-content: flex-start !important;
+     }
+}
+@media (max-width: 334px){
+    .history_block{
+        p{
+            font-size: 10px !important;
+        }
+    }
+}

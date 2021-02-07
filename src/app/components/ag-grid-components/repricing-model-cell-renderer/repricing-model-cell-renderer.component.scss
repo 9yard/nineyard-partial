@@ -1,0 +1,29 @@
+:host {
+    line-height: initial;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.repricing {
+    width: 100%;
+    &_model-name {
+        font-family: var(--font-bold);
+        margin-bottom: 4px;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+
+        &--inactive {
+            color: var(--gray-3);
+        }
+    }
+    &_paused {
+        font-size: var(--text-sm);
+        color: var(--gray-4);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+}

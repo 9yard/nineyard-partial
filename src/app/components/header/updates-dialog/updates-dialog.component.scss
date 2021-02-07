@@ -1,0 +1,18 @@
+:host {
+    display: block;
+    margin: -24px;
+    overflow: auto;
+}
+
+.updates {
+    &_item {
+        padding: var(--space-md);
+        border-bottom: 1px solid var(--gray-2);
+        font-size: var(--text-lg);
+    }
+    &_title {
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+<div class="shipment">
+  <div class="shipment_title">
+    <span
+      class="shipment_name"
+      [routerLink]="['/shipyard/shipments', shipment.shipmentHeaderId]"
+    >
+      {{
+        shipment.amazonShipmentId
+          ? shipment.amazonShipmentId
+          : "Draft: " + shipment.shipmentHeaderId
+      }}
+    </span>
+    <span
+      class="shipment_link"
+      (click)="openOnAmazon()"
+      *ngIf="shipment.amazonShipmentId"
+    >
+      <i _ngcontent-rll-c231="" class="fal fa-external-link-square-alt"></i>
+    </span>
+    <!-- <div class="shipment_id">{{ shipment.amazonShipmentId }}</div> -->
+  </div>
+
+  <div class="shipment_created-date">
+    <b>Created:</b> {{ shipment.createdOn | date: "shortDate" }}
+  </div>
+  <!-- <div class="shipment_sku-count"><b>SKU's:</b> {{ shipment.totalQty }}</div> -->
+  <div class="shipment_sku-qty"><b>QTY:</b> {{ shipment.totalQty }}</div>
+  <div class="shipment_boxes-count"><b>Boxes:</b> {{ shipment.boxCount }}</div>
+  <div class="shipment_warehouse">
+    <div
+      [matTooltip]="
+        shipment.sourceWarehouse?.addressLine1 +
+        ' ' +
+        shipment.sourceWarehouse?.city +
+        ' ' +
+        shipment.sourceWarehouse?.state
+      "
+    >
+      {{ shipment.sourceWarehouse?.code }}
+    </div>
+    <i class="fal fa-chevron-double-right"></i>
+    <div
+      [matTooltip]="
+        shipment.destinationWarehouse?.addressLine1 +
+        ' ' +
+        shipment.destinationWarehouse?.city +
+        ' ' +
+        shipment.destinationWarehouse?.state
+      "
+    >
+      {{ shipment.destinationWarehouse?.code }}
+    </div>
+  </div>
+  <div class="shipment_errors">{{ shipment.error ? "Error" : "" }}</div>
+  <div class="shipment_type">{{ shipment.shipmentType }}</div>
+  <div class="shipment_action">
+    <i class="far fa-ellipsis-v"></i>
+  </div>
+</div>

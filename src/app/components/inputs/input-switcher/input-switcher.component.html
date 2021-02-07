@@ -1,0 +1,10 @@
+<div class="switcher">
+  <div
+    class="switcher_element"
+    *ngFor="let option of options"
+    (click)="selectedOption = option"
+    [ngClass]="{ 'switcher_element--active': option === selectedOption }"
+  >
+    {{ option }}
+  </div>
+</div>

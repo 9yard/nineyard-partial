@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  padding: var(--space-xxl) var(--space-xxxl);
+  @media(max-width: 1500px) {
+    padding: var(--space-xl) var(--space-xxl);
+  }
+}

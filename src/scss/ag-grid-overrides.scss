@@ -1,0 +1,40 @@
+@import "~@ag-grid-community/core/dist/styles/ag-grid.scss";
+@import "~@ag-grid-community/core/dist/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+.ag-theme-alpine {
+  @include ag-theme-alpine((font-family: var(--font-light),
+      font-size: 12px,
+      row-height: 58px,
+      borders: false,
+      borders-critical: true,
+      row-border-color: ag-derived(background-color, $mix: foreground-color 8%),
+      odd-row-background-color: null,
+      border-color: ag-derived(background-color, $mix: foreground-color 15%),
+      header-background-color: #eeeeee,
+      selected-row-background-color: var(--color-primary-2),
+      row-hover-color: var(--color-primary-1)
+    ));
+
+  .ag-menu-option-active {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(.ag-cell-range-single-cell) {
+    border: none;
+  }
+
+  .ag-side-buttons {
+    display: none;
+  }
+  .ag-pivot-mode-panel, .ag-unselectable.ag-column-drop {
+    display: none;
+  }
+
+  .ag-cell-data-changed {
+    background-color: var(--color-primary-light) !important;
+  }
+  .ag-column-select-column-drag-handle {
+    display: none;
+  }
+}

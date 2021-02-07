@@ -1,0 +1,25 @@
+:host {
+    line-height: initial;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.date {
+    width: 100%;
+
+    &_date {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: var(--font-bold);
+        margin-bottom: 4px;
+    }
+    &_time {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: var(--text-sm);
+        color: var(--gray-5);
+    }
+}

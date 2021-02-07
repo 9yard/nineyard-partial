@@ -1,0 +1,19 @@
+<app-dialog
+  [title]="data.title"
+  [actions]="actions"
+  (action)="close($event)"
+  (close)="close()"
+>
+  <mat-dialog-content>
+    <div class="confirm">
+      {{ data.message }}
+    </div>
+    <div class="skus">
+      <app-shipment-sku
+        *ngFor="let sku of data.itemsNotBoxed"
+        [sku]="sku"
+        [box]="true"
+      ></app-shipment-sku>
+    </div>
+  </mat-dialog-content>
+</app-dialog>

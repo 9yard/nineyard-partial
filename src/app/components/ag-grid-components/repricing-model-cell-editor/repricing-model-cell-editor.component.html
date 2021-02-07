@@ -1,0 +1,27 @@
+<div class="editor">
+    <div class="editor_typeahead" *ngIf="editModel" >
+        <input type="text"  [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+    </div>
+    
+   
+    
+    <div class="editor_actions">
+        
+        <div class="editor_action" (click)="removeModel()" matTooltip="Remove Model">
+            <i class="fal fa-times"></i>
+        </div>
+        
+        <!-- <div class="editor_action" (click)="toggleSkuPricingModel(params.data.Prmodel.isActive)" [hidden]="!params.data.Prmodel.modelId"  [matTooltip]="params.data.Prmodel.isActive ? 'Pause Repricing' : 'Restart Repricing'">
+            <i class="fal " [ngClass]="{'fa-pause': params.data.Prmodel.isActive, 'fa-play': !params.data.Prmodel.isActive}"></i>
+        </div> -->
+
+        <div class="editor_action" (click)="save()" matTooltip="Save Changes">
+            <i class="fal fa-check"></i>
+        </div>
+    </div>
+</div>

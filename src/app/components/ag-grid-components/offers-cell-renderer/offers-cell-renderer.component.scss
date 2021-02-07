@@ -1,0 +1,19 @@
+:host {
+    display: flex;
+    flex-flow: column nowrap;
+    line-height: initial;
+    justify-content: center;
+    height: 100%;
+}
+
+.offer {
+    padding: var(--space-xxs) 0;
+    &_icon {
+        margin-right: 10px;
+        display: inline-block;
+        width: 16px;
+    }
+    &_amount {
+        display: inline-block;
+    }
+}

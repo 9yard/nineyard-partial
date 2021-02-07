@@ -1,0 +1,35 @@
+.dialog-header {
+  display: grid;
+  grid-template:
+    "title close" auto
+    "description close" auto /
+    1fr 30px;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+  &_title {
+    font-size: 20px;
+    grid-area: title;
+  }
+
+  &_description {
+    color: var(--color-gray-6);
+    font-size: var(--text-sm);
+    grid-area: description;
+  }
+  &_closer {
+    cursor: pointer;
+    color: #555;
+    padding: 2px 7px;
+    grid-area: close;
+    justify-self: center;
+    align-self: center;
+    &:hover {
+      color: #333;
+      background-color: #f1f1f1;
+      border-radius: 3px;
+    }
+  }
+}

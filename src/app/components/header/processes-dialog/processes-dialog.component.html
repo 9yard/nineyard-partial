@@ -1,0 +1,9 @@
+<div class="process" *ngFor="let process of data">
+  <div class="process_title">{{ process.action }}</div>
+  <div
+    class="process_status"
+    [class]="'process_status--' + process.response.responseType"
+  >
+    {{ process.response.responseType }}
+  </div>
+</div>

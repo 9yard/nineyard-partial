@@ -1,0 +1,15 @@
+<div class="sku">
+    <div class="sku_item sku_item--sku" (click)="openLink('https://sellercentral.amazon.com/inventory/ref=?tbla_myitable=search:'+params.value)" >
+        {{params.value}}
+        <div class="sku_link">
+            <i class="fal fa-external-link-square"></i>
+        </div>
+    </div>
+    <div class="sku_item sku_item--asin"  (click)="openLink('https://amazon.com/dp/' + params.data.Asin + '?th=1&psc=1')">
+        {{ params.data.Asin}}
+        <div class="sku_link">
+            <i class="fal fa-external-link-square"></i>
+        </div>
+    </div>
+</div>
+<div class="sku_active" title="{{params.data.Active ? 'Status: Active':'Status: Inactive'}}" [ngClass]="{'sku_active--active': params.data.Active}"></div>

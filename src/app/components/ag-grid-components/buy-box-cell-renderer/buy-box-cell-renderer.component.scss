@@ -1,0 +1,52 @@
+:host {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 4px;
+    justify-content: center;
+    height: 100%;
+}
+
+.price {
+    line-height: initial;
+    padding: var(--space-xxs) var(--space-xs);
+    background-color: var(--color-primary-light);
+    border-radius: var(--border-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    &_buybox-type {
+        width: 44px;
+        height: 15px;
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    &--amazon {
+        .price_buybox-type {
+            background-image: url('../../../../assets/images/amazon-icons/amazon-logo.png');
+        }
+    }
+    &--fba {
+        .price_buybox-type {
+            background-image: url('../../../../assets/images/amazon-icons/fba-logo.png');
+            
+        }
+    }
+    &--fbm {
+        .price_buybox-type {
+            background-image: url('../../../../assets/images/amazon-icons/fbm-logo.png');
+            
+        }
+    }
+
+    &--is-yours {
+        background-color: var(--color-success-light);
+        color: var(--color-success)
+    }
+
+    &--is-below-minumum {
+        background-color: var(--color-accent-light);
+        color: var(--color-accent);
+    }
+}

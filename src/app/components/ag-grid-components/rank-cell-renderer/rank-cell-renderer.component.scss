@@ -1,0 +1,26 @@
+:host {
+    line-height: initial;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.rank {
+    width: 100%;
+
+    &_catagory {
+        font-size: var(--text-sm);
+
+        margin-bottom: 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+    &_number {
+        font-family: var(--font-bold);
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+}

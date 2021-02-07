@@ -1,0 +1,49 @@
+@use "../../../../scss/modules/mixins.scss";
+@import "../../../../assets/scss/variable.scss";
+
+:host {
+  display: block;
+  @include mixins.page-width(850px);
+}
+
+.plan {
+  padding: 3rem 2rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  .column {
+    font-size: 33px;
+    padding: 0 1rem;
+    label {
+      display: block;
+      margin-bottom: 9px;
+      font-size: 18px;
+    }
+  }
+}
+.invoice {
+  padding: 2rem 3rem;
+  h4 {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+  .table td {
+    border: 0;
+    padding: 0.55rem;
+  }
+}
+.payment-info {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem;
+  margin-top: 3rem;
+  .title {
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+  }
+}
+.button {
+  .btn {
+    min-width: 154px;
+    text-align: center;
+  }
+}

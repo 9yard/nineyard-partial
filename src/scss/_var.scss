@@ -1,0 +1,13 @@
+// https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd
+
+@import "./color";
+@import "./fonts";
+@import "./spacing";
+
+:root {
+  --box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.05);
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+
+  --transition-primary: ease all 200ms;
+}

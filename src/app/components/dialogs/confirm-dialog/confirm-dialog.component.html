@@ -1,0 +1,10 @@
+<app-dialog
+  [title]="data.title"
+  [actions]="actions"
+  (action)="close($event)"
+  (close)="close()"
+>
+  <div class="confirm">
+    {{ data.message }}
+  </div>
+</app-dialog>

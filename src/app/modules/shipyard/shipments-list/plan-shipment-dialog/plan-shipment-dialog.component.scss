@@ -1,0 +1,41 @@
+.plan-shipment {
+  margin: var(--space-xl) 0;
+  &_form {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-lg);
+  }
+  &_result {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--space-sm);
+  }
+}
+
+.sku-inputs {
+  display: flex;
+  gap: var(--space-md);
+  .input-container {
+    width: 100%;
+  }
+  &_icon {
+    border-radius: var(--border-radius-sm);
+    background-color: var(--color-gray-1);
+    cursor: pointer;
+    align-self: center;
+    margin-top: 22px;
+    padding: 4px 8px;
+    border: 1px solid var(--color-gray-2);
+    color: var(--color-gray-7);
+    &:hover {
+      background-color: var(--color-gray-3);
+    }
+  }
+}
+
+.note {
+  font-size: var(--space-sm);
+  color: var(--color-gray-6);
+  font-family: var(--font-thin);
+  margin-top: var(--space-md);
+}

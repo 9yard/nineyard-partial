@@ -1,0 +1,20 @@
+.add-sku {
+  padding: var(--space-lg) 0;
+  display: grid;
+  gap: var(--space-lg);
+  &_form {
+    display: flex;
+    gap: var(--space-sm);
+  }
+  &_button {
+    align-self: flex-end;
+  }
+  &_list {
+    display: grid;
+    gap: var(--space-sm);
+  }
+  &_list-title {
+    font-family: var(--font-bold);
+    font-size: var(--text-lg);
+  }
+}

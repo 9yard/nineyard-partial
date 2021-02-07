@@ -1,0 +1,41 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- dev
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    rm -rf node_modules
+    rm package-lock.json
+    rm .npmrc
+  displayName: 'Remove old modules'
+
+- script: |
+    npm install -g @angular/cli
+    npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+    npm config set "//npm.fontawesome.com/:_authToken" 174895FD-9576-4019-957B-C51AC29EBFF1
+    npm i
+  displayName: 'npm install and build'
+  
+- task: Npm@1
+  displayName: 'Build Angular'
+  inputs:
+    command: custom
+    customCommand: run build
+    workingDir: src
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'angular'
+    targetPath: 'dist'

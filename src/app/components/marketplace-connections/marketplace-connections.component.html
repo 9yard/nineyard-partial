@@ -1,0 +1,34 @@
+<div class="marketplace">
+  <div class="marketplace_header">
+    <div class="marketplace_icon">
+      <app-channal-icon [channal]="marketplace"></app-channal-icon>
+    </div>
+    <div class="marketplace_name">{{ marketplace }}</div>
+    <div class="marketplace_action">
+      <app-button (click)="isConnecting = true" [buttonSize]="'action'"
+        >Connect</app-button
+      >
+    </div>
+  </div>
+
+  <div class="marketplace_body" *ngIf="isConnecting || connectedAccounts.length" >
+    <div *ngIf="isConnecting">
+      <app-amazon-new-connection (saved)="refreshAccounts()" *ngIf="marketplace == 'Amazon'" ></app-amazon-new-connection>
+      <app-walmart-new-connection (saved)="refreshAccounts()" *ngIf="marketplace == 'Walmart'" ></app-walmart-new-connection>
+    </div>
+
+    <div class="connection">
+      <div class="connection_item" *ngFor="let account of connectedAccounts">
+        <div class="connection_name">{{ account.name }}</div>
+        <div class="connection_action">
+          <app-button
+            [buttonSize]="'small'"
+            [buttonStyle]="'underline'"
+            [buttonColor]="'accent'"
+            >Remove</app-button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

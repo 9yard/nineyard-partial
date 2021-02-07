@@ -1,0 +1,16 @@
+<div class="products">
+    <app-page-container-devider [title]="'Build your yard'" [center]="true"></app-page-container-devider>
+
+    <div class="products_list">
+        <div class="products_item" *ngFor="let application of applications; let i = index" >
+            <app-application [application]="application" (click)="toggleApplication(i)" ></app-application>
+        </div>
+    </div>
+
+    <app-page-container-button-group>
+        <app-button [buttonStyle]="'underline'" (click)="goPrevious()"
+        >Previous</app-button
+      >
+        <app-button (click)="goNext()" [isDisabled]="!applicationsSelected">Next</app-button>
+    </app-page-container-button-group>
+</div>

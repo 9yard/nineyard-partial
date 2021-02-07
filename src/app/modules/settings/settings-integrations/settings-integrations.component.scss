@@ -1,0 +1,12 @@
+@use "../../../../scss/modules/mixins.scss";
+
+:host {
+  display: block;
+  @include mixins.page-width(850px);
+}
+
+.marketplace-list {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-md)
+}

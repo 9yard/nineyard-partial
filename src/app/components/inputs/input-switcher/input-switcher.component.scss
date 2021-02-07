@@ -1,0 +1,28 @@
+.switcher {
+  display: flex;
+  &_element {
+    cursor: pointer;
+    color: var(--gray-4);
+    font-family: var(--font-thin);
+    text-transform: capitalize;
+
+    &:not(:last-of-type) {
+      &:after {
+        color: var(--gray-3);
+        content: "\0000a0 / \0000a0 ";
+      }
+    }
+
+    &:hover {
+      color: var(--color-primary-light);
+    }
+
+    &--active {
+      color: var(--color-primary);
+      font-family: var(--font-semi-bold);
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+}

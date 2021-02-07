@@ -1,0 +1,45 @@
+.app-container {
+  display: grid;
+  grid-template:
+    "nav header" 57px
+    "nav app" auto /
+    170px 1fr;
+  height: 100vh;
+  transition: all ease 200ms;
+  &_header {
+    grid-area: header;
+  }
+  &_page {
+    overflow: auto;
+    padding: var(--space-xl);
+    grid-area: app;
+  }
+  &--hide-nav {
+    display: block;
+    @media (max-width: 1022px) {
+      overflow: hidden;
+    }
+    app-common-sidebar,
+    app-header {
+      display: none;
+    }
+    .app-container_page {
+      overflow: hidden;
+      padding: 0;
+    }
+  }
+
+  &--collapse-nav {
+    grid-template:
+    "nav header" 57px
+    "nav app" auto /
+    49px 1fr;
+  }
+  app-common-sidebar {
+    grid-area: nav;
+  }
+}
+
+router-outlet {
+  display: none;
+}

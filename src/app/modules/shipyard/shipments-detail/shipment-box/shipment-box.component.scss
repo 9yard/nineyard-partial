@@ -1,0 +1,73 @@
+:host {
+  display: block;
+}
+
+.box {
+  margin: 0 var(--space-md);
+  border-bottom: 1px solid var(--color-gray-2);
+  &_header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 100%;
+    position: relative;
+  }
+
+  &_title {
+    font-family: var(--font-bold);
+  }
+
+  &_actions {
+    margin-left: auto;
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  &_action {
+  }
+
+  &_items {
+    padding-left: 22px;
+    position: relative;
+
+    &.cdk-drop-list-dragging {
+      .box_drop-indicator {
+        display: block;
+      }
+    }
+  }
+
+  &_drop-indicator {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    width: 400px;
+    position: relative;
+
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+  }
+}
+
+.blinking-dot {
+  animation: blink 1s ease-in infinite;
+  font-size: var(--text-lg);
+  line-height: var(--text-md);
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+
+  49% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

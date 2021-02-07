@@ -1,0 +1,66 @@
+.application {
+    padding: var(--space-md);
+    display: grid;
+    grid-template: "icon title price" auto
+                    "icon description price" auto /
+                    50px 1fr 100px;
+    gap: 0 var(--space-md);
+    background-color: var(--color-gray-1);
+    border: 2px solid var(--color-gray-2);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: var(--primary-transition);
+    &:hover {
+        background-color: var(--color-primary-2);
+    }
+    &--selected {
+        background-color: var(--color-primary-2);
+        border: 2px solid var(--color-primary-5);
+    }
+
+    &_icon {
+        grid-area: icon;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        align-self: center;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    &_name {
+        grid-area: title;
+        color: var(--color-primary-5);
+        font-size: var(--text-xxl);
+        font-family: var(--font-fancy);
+
+    }
+    &_description {
+        grid-area: description;
+        color: var(--color-gray-6);
+    }
+    &_price {
+        grid-area: price;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+    &_free {
+        color: var(--color-primary-5);
+        font-size: var(--text-xl);
+        font-family: var(--font-bold);
+        text-decoration: none;
+    }
+    &_amount {
+        font-size: var(--text-xl);
+        font-family: var(--font-bold);
+        text-decoration: line-through;
+    }
+    &_term {
+        font-size: var(--text-sm);
+        color: var(--color-gray-4);
+        text-decoration: line-through;
+
+    }
+}

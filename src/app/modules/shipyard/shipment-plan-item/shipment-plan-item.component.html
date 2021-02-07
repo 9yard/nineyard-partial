@@ -1,0 +1,16 @@
+<div class="shipment-preview">
+  <div class="shipment-preview_title">{{ plan.destinationId }}</div>
+  <div class="shipment-preview_address">{{ plan.shipTo }}</div>
+  <div class="shipment-preview_chips">
+    <div class="shipment-preview_chip"><b>SKU: </b> {{ plan.sku }}</div>
+    <div class="shipment-preview_chip"><b>Quantity: </b> {{ plan.qty }}</div>
+  </div>
+
+  <div
+    class="shipment-preview_icon"
+    matTooltip="Open Map"
+    (click)="openInGoogleMaps(plan.destinationId)"
+  >
+    <i class="fal fa-map"></i>
+  </div>
+</div>

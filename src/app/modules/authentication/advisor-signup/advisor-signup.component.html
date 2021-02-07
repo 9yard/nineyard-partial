@@ -1,0 +1,82 @@
+<main class="form_holder">
+  
+    <div class="right_side big_screen_h_100">
+        <div class="d-flex form_container">
+            <div class="form_parent">
+                <form autocomplete="off" [formGroup]="registerForm">
+                    <div class="text-center">
+                        <h4 class=" font-weight-600  tk-roc-grotesk form_type_label">Signup</h4>
+                    </div>
+                    <div class="form-group gap_top_11">
+                        <label for="fname" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Username:</label>
+                        <input type="text" (change)="verifyUsername()" formControlName="Username" class="form-control"
+                            id="fname">
+                        <span class="danger_color2 mt-2 error_msg"
+                            *ngIf="usernameErrorMessage">{{usernameErrorMessage}}</span>
+                    </div>
+                    <div class="form-group gap_top_2pt2 position-relative">
+                        <label for="email" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Email:</label>
+                        <input type="email" (change)="verifyEmail()" formControlName="Email" class="form-control"
+                            id="email">
+                        <span class="danger_color2 mt-2 error_msg"
+                            *ngIf="emailErrorMessage">{{emailErrorMessage}}</span>
+                        <span class="danger_color2 mt-2 error_msg"
+                            *ngIf="registerForm.get('Email').hasError('email') && (registerForm.get('Email').dirty || registerForm.get('Email').touched)">Please
+                            Enter Valid Email Address</span>
+                    </div>
+
+                    <div class="form-group gap_top_2pt2">
+                        <label for="comp_name" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Company Name:</label>
+                        <input type="text" formControlName="Company" class="form-control" id="comp_name">
+                    </div>
+                    <div class="form-group gap_top_2pt2">
+                        <label for="phone" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Phone:</label>
+                        <input type="text" formControlName="Phone" class="form-control" id="phone">
+                    </div>
+
+                    <div class="form-group gap_top_2pt2 position-relative">
+                        <label for="pwd" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Choose a password: <i
+                                class="ml-2 light_dark_grey fal fa-info-circle"></i></label>
+                        <input autocomplete="new-password" formControlName="Password" type="password"
+                            class="form-control" id="pwd">
+                        <!-- <div class="modal_password">
+                            <p class=" font-weight-600">Password Requirement</p>
+                            <div class="password_checkbox_holder">
+                                <mat-checkbox>Min 8 Characters </mat-checkbox>
+                                <mat-checkbox checked="checked">Contain 1 uppercase </mat-checkbox>
+                                <mat-checkbox>Contain Symbol </mat-checkbox>
+                                <mat-checkbox>No reuse old </mat-checkbox>
+                                <mat-checkbox>Other </mat-checkbox>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div class="form-group gap_top_2pt2 position-relative">
+                        <label for="confirm_pass" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Confirm
+                            Password:</label>
+                        <input type="password" formControlName="ConfirmPassword" class="form-control" id="confirm_pass">
+                        <span class="danger_color2 mt-2 error_msg"
+                            *ngIf="registerForm.get('ConfirmPassword').hasError('notEquivalent') && (registerForm.get('Password').dirty || registerForm.get('Password').touched) && (registerForm.get('ConfirmPassword').dirty || registerForm.get('ConfirmPassword').touched)">Password
+                            is mismatched</span>
+                    </div>
+
+
+                    <button type="button" [disabled]="registerForm.invalid || usernameErrorMessage || emailErrorMessage"
+                        (click)="onSubmit()" class="gap_top_8pt5  btn btn_primary">Register</button>
+
+                    <div class="d-flex justify-content-between align-items-center gap_top_4pt5">
+                        <a [routerLink]="['/account/login']"
+                            class="text-uppercase primary_color  font-weight-600">Login</a>
+                        <a [routerLink]="['/account/forgot-password']"
+                            class="text-uppercase primary_color  font-weight-600">Forgot Password?</a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="app_link_of_form">
+             
+        </div>
+    </div>
+</main>

@@ -1,0 +1,409 @@
+<div
+  class="shipment-detail"
+  *ngIf="shipment"
+  [ngClass]="{ 'shipment-detail--draft': shipment.status === 'DRAFT' }"
+>
+  <div class="column column--left">
+    <div class="column_header">
+      <div class="column_title">Shipment SKU's</div>
+      <div class="column_actions" *ngIf="canEdit">
+        <div
+          class="column_action"
+          (click)="scanInto = scanInto === 'sku' ? null : 'sku'"
+          matTooltip="Scan FNSKU"
+        >
+          <app-button
+            [buttonSize]="'action'"
+            [buttonColor]="scanInto === 'sku' ? 'success' : 'primary'"
+            [buttonStyle]="'primary'"
+            ><i class="fal fa-scanner"></i
+          ></app-button>
+        </div>
+        <div class="column_action" (click)="addSku()" matTooltip="Add SKU">
+          <app-button [buttonSize]="'action'" [buttonStyle]="'primary'"
+            ><i class="fal fa-plus"></i
+          ></app-button>
+        </div>
+        <div class="column_action" [matMenuTriggerFor]="skuMenu">
+          <app-button [buttonSize]="'action'" [buttonStyle]="'primary'"
+            ><i class="far fa-ellipsis-v"></i
+          ></app-button>
+        </div>
+      </div>
+    </div>
+    <div class="column_filters">
+      <div class="column_filter">
+        <div class="round-input">
+          <input
+            type="text"
+            class="round-input_input"
+            [formControl]="skuSearch"
+            placeholder="Search SKU's"
+          />
+          <!-- <div
+            class="round-input_clear"
+            *ngIf="skuSearch.value"
+            (click)="skuSearch.value = ''"
+          >
+            <i class="fal fa-times"></i>
+          </div> -->
+        </div>
+      </div>
+      <div class="column_filter">
+        <div class="round-input">
+          <label class="round-input_label"> Filter: </label>
+          <select type="text" class="round-input_input" [formControl]="name">
+            <option [value]="'all'">All</option>
+            <option [value]="'boxed'">Boxed</option>
+            <option [value]="'unboxed'">Unboxed</option>
+          </select>
+        </div>
+      </div>
+      <div class="column_filter">
+        <div class="round-input">
+          <label class="round-input_label"> Sort: </label>
+          <select type="text" class="round-input_input" [formControl]="skuSort">
+            <option [value]="'default'">SKU</option>
+            <option [value]="'qty'">Quantity</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <app-shipment-sku-list
+      id="sku-list"
+      cdkDropList
+      [cdkDropListConnectedTo]="shipyardService.dropListIds"
+      [cdkDropListData]="skus"
+      (cdkDropListDropped)="drop($event)"
+      class="thin-scrollbars"
+    >
+      <app-shipment-sku
+        cdkDrag
+        [cdkDragDisabled]="sku.qty - sku.totalBoxed ? false : true"
+        *ngFor="let sku of shipmentSkus$ | async"
+        [sku]="sku"
+        [boxes]="shipment.boxes"
+        [cdkDragData]="sku"
+        [canBox]="true"
+        (itemSelectedEvent)="highlightSku($event)"
+        [highlighted]="boxSearch.value === sku.sku"
+        [actionMenu]="actionMenu"
+        [printMenu]="printMenu"
+        [addToBoxMenu]="addToBoxMenu"
+        [canEdit]="canEdit"
+      ></app-shipment-sku>
+    </app-shipment-sku-list>
+
+    <div class="column_no-results" *ngIf="!(shipmentSkus$ | async)?.length">
+      <app-no-results
+        *ngIf="shipment?.skus.length"
+        [message]="'SKU ' + skuSearch.value + ' does not exist in a box'"
+      ></app-no-results>
+    </div>
+  </div>
+
+  <div class="column column--right" *ngIf="shipment.status !== 'DRAFT'">
+    <div class="column_header">
+      <div class="column_title">Boxes</div>
+      <div class="column_actions">
+        <div class="column_action" matTooltip="New Box" *ngIf="canEdit">
+          <app-button
+            (click)="createBox()"
+            [buttonSize]="'action'"
+            [buttonStyle]="'primary'"
+            ><i class="far fa-plus"></i
+          ></app-button>
+        </div>
+        <div
+          class="column_action"
+          [matMenuTriggerFor]="boxMenu"
+          matTooltip="Print"
+          *ngIf="canEdit"
+        >
+          <app-button [buttonSize]="'action'" [buttonStyle]="'primary'">
+            <i class="fal fa-print"></i>
+          </app-button>
+        </div>
+        <div
+          class="column_action"
+          matTooltip="{{ !expanded ? 'Expand' : 'Collapse' }}"
+        >
+          <app-button
+            [buttonSize]="'action'"
+            [buttonStyle]="'primary'"
+            (click)="expanded = !expanded"
+          >
+            <div [class]="!expanded ? 'expand' : 'expand expand--collapse'">
+              <i class="far fa-angle-up"></i>
+              <i class="far fa-angle-down"></i>
+            </div>
+          </app-button>
+        </div>
+        <div class="column_action" [matMenuTriggerFor]="boxMenu">
+          <app-button [buttonSize]="'action'" [buttonStyle]="'primary'"
+            ><i class="far fa-ellipsis-v"></i
+          ></app-button>
+        </div>
+      </div>
+    </div>
+    <div class="column_filters column_filters--full-width">
+      <div class="column_filter">
+        <div class="round-input">
+          <input
+            type="text"
+            class="round-input_input"
+            placeholder="Search SKU"
+            [formControl]="boxSearch"
+          />
+          <!-- <div
+            class="round-input_clear"
+            *ngIf="boxSearch.value"
+            (click)="boxSearch.value = ''"
+          >
+            <i class="fal fa-times"></i>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- inplement later -->
+      <!-- <div class="column_filter">
+        <div class="round-input">
+          <select type="text" class="round-input_input">
+            <option>All</option>
+            <option>Boxed</option>
+            <option>Unboxed</option>
+          </select>
+        </div>
+      </div>
+      <div class="column_filter">
+        <div class="round-input">
+          <select type="text" class="round-input_input" [formControl]="skuSort">
+            <option [value]="'default'">Sort</option>
+            <option [value]="'qty'">Quantity</option>
+          </select>
+        </div>
+      </div> -->
+    </div>
+
+    <app-shipment-box-list>
+      <cdk-virtual-scroll-viewport
+        class="shipment-box-container thin-scrollbars"
+        itemSize="50"
+      >
+        <mat-accordion multi>
+          <app-shipment-box
+            *cdkVirtualFor="let box of shipmentBoxes$ | async"
+            [box]="box"
+            [expanded]="expanded"
+            [scanInto]="scanInto"
+            (scanningChanged)="scanInto = $event"
+            (droped)="drop($event)"
+            (emptyBoxEvent)="emptyBox($event)"
+            (deleteBoxEvent)="deleteBox($event)"
+            (printBoxEvent)="printSingleBox($event)"
+            (print2DEvent)="printSingle2DLabels($event)"
+          >
+            <app-shipment-sku
+              *ngFor="let sku of box.skus; let last = last"
+              [box]="box"
+              [sku]="sku"
+              [isLast]="last"
+              [canBox]="shipment.status === 'status'"
+              (printSkuEvent)="printSkuLabel([$event])"
+              [actionMenu]="actionMenu"
+              [printMenu]="printMenu"
+              [addToBoxMenu]="addToBoxMenu"
+              [canEdit]="canEdit"
+            ></app-shipment-sku>
+          </app-shipment-box>
+        </mat-accordion>
+
+        <div
+          class="column_no-results"
+          *ngIf="!(shipmentBoxes$ | async)?.length"
+        >
+          <app-no-results
+            *ngIf="!shipment?.boxes.length"
+            [message]="'Please create a box to start with your shipment'"
+          ></app-no-results>
+          <app-no-results
+            *ngIf="shipment?.boxes.length"
+            [message]="'SKU ' + boxSearch.value + ' does not exist in a box'"
+          ></app-no-results>
+        </div>
+      </cdk-virtual-scroll-viewport>
+
+      <div class="drop-indicators">
+        <app-drag-indicator
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListConnectedTo]="shipyardService.dropListIds"
+          [actionType]="'Create Box and drop all'"
+          id="create-drop-all"
+        >
+        </app-drag-indicator>
+        <app-drag-indicator
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListConnectedTo]="shipyardService.dropListIds"
+          [actionType]="'Create Box and drop some'"
+          id="create-drop-some"
+        ></app-drag-indicator>
+        <app-drag-indicator
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListConnectedTo]="shipyardService.dropListIds"
+          [actionType]="'Create multiple boxes'"
+          id="create-multiple-boxes"
+        ></app-drag-indicator>
+      </div>
+    </app-shipment-box-list>
+  </div>
+
+  <div class="actions" *ngIf="shipment.status !== 'DRAFT' && canEdit">
+    <app-button
+      [buttonStyle]="'wire'"
+      (click)="completeShipment(false)"
+      [isDisabled]="shipmentErrors?.length"
+      >Mark As Closed</app-button
+    >
+    <app-button
+      (click)="completeShipment(true)"
+      [isDisabled]="shipmentErrors?.length"
+      >Submit with Box Content</app-button
+    >
+  </div>
+
+  <div class="actions" *ngIf="shipment.status === 'DRAFT'">
+    <app-button
+      [buttonStyle]="'underline'"
+      [buttonColor]="'accent'"
+      (click)="deleteShipmentDraft()"
+      >Delete Draft</app-button
+    >
+    <app-button (click)="mergeShipment()">Merge to Shipment</app-button>
+  </div>
+</div>
+
+<app-no-results
+  *ngIf="!shipment"
+  [message]="loading ? 'Loading Shipment Detail' : 'Shipments does not exist'"
+></app-no-results>
+
+<mat-menu #skuMenu="matMenu">
+  <button mat-menu-item (click)="clearShipment()">Clear Shipment</button>
+  <button mat-menu-item (click)="printSkuLabel(shipment.skus)">
+    Print all labels
+  </button>
+  <!-- <button mat-menu-item>Pick list</button> -->
+</mat-menu>
+
+<mat-menu #boxMenu="matMenu">
+  <button mat-menu-item (click)="unpackAllBoxes()">Upnack All Boxes</button>
+  <button mat-menu-item (click)="removeEmptyBoxes()">Remove Empty Boxes</button>
+</mat-menu>
+
+<mat-menu #boxMenu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="printAllMenu">
+    Print all box labels
+  </button>
+</mat-menu>
+
+<mat-menu #printAllMenu="matMenu">
+  <button mat-menu-item (click)="printAllBoxLabels()">Box labels</button>
+  <button mat-menu-item (click)="printAll2DLabels()">2D labels</button>
+</mat-menu>
+
+<!-- sku menus -->
+<mat-menu #actionMenu="matMenu">
+  <ng-template matMenuContent let-sku="sku" let-box="box">
+    <button mat-menu-item (click)="updateSku(sku)" *ngIf="!box">
+      Update QTY
+    </button>
+    <button mat-menu-item (click)="UpdateBoxSkuQty(sku, box.boxId)" *ngIf="box">
+      Update Boxed QTY
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="!box && sku.totalBoxed == 0"
+      (click)="removeSku(sku)"
+    >
+      Remove SKU
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="!box && sku.totalBoxed > 0 && sku.totalBoxed < sku.qty"
+      (click)="removeSku(sku)"
+    >
+      Reomve Unboxed Qty
+    </button>
+    <button
+      mat-menu-item
+      *ngIf="box"
+      (click)="removeSkuFromBox(sku, box.boxId)"
+    >
+      Remove SKU from box
+    </button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #addToBoxMenu="matMenu">
+  <ng-template matMenuContent let-sku="sku">
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="existingBoxMenu"
+      [matMenuTriggerData]="{ sku: sku }"
+    >
+      Add to existing box
+    </button>
+    <button
+      mat-menu-item
+      [matMenuTriggerFor]="newBoxMenu"
+      [matMenuTriggerData]="{ sku: sku }"
+    >
+      Add all to new box(es)
+    </button>
+    <button mat-menu-item (click)="addSomeToBox(sku)">
+      Add partial to new box
+    </button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #existingBoxMenu="matMenu">
+  <ng-template matMenuContent let-sku="sku">
+    <button
+      mat-menu-item
+      *ngFor="let box of shipment.boxes"
+      (click)="addSomeToBox(sku, box.boxId)"
+    >
+      Box {{ box.boxNumber }}
+    </button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #newBoxMenu="matMenu">
+  <ng-template matMenuContent let-sku="sku">
+    <button
+      mat-menu-item
+      (click)="addSkuToBox(sku.sku, [sku.qty - sku.totalBoxed])"
+    >
+      Create single box
+    </button>
+    <button mat-menu-item (click)="addToMultipleBoxes(sku)">
+      Create multiple boxes
+    </button>
+  </ng-template>
+</mat-menu>
+
+<mat-menu #printMenu="matMenu">
+  <ng-template matMenuContent let-sku="sku">
+    <button
+      mat-menu-item
+      (click)="printSkuLabel([sku])"
+      *ngIf="sku.qty - sku.printedCount"
+    >
+      Print all
+    </button>
+    <button mat-menu-item (click)="printSkuQty(sku)">Choose quantity</button>
+  </ng-template>
+</mat-menu>

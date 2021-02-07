@@ -1,0 +1,61 @@
+<div class="shipments" cdkScrollable>
+  <div class="shipments_header">
+    <div class="shipments_tabs">
+      <div
+        class="shipments_tab"
+        (click)="selectedTab = 'draft'"
+        [ngClass]="{ 'shipments_tab--selected': selectedTab === 'draft' }"
+      >
+        Drafts
+      </div>
+      <div
+        class="shipments_tab"
+        (click)="selectedTab = 'working'"
+        [ngClass]="{ 'shipments_tab--selected': selectedTab === 'working' }"
+      >
+        Working
+      </div>
+      <div
+        class="shipments_tab"
+        (click)="selectedTab = 'receiving'"
+        [ngClass]="{ 'shipments_tab--selected': selectedTab === 'receiving' }"
+      >
+        Receiving
+      </div>
+      <div
+        class="shipments_tab"
+        (click)="selectedTab = 'closed'"
+        [ngClass]="{ 'shipments_tab--selected': selectedTab === 'closed' }"
+      >
+        Closed
+      </div>
+    </div>
+    <div class="shipments_actions">
+      <app-button (click)="planShipment()" [buttonSize]="'small'"
+        >Plan Shipment</app-button
+      >
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="filters_filter" (click)="importShipments()">
+      <i class="fal fa-arrow-to-bottom"></i> Import from amazon
+    </div>
+
+    <div class="filters_filter" #filterButton (click)="openFilter()">
+      <i class="fal fa-filter"></i> Filters
+    </div>
+  </div>
+
+  <div class="shipments_list">
+    <app-shipments-list-item
+      *ngFor="let shipment of shipments; let i = index"
+      [shipment]="shipment"
+    ></app-shipments-list-item>
+
+    <app-no-results
+      *ngIf="!shipments.length"
+      [message]="loading ? 'Loading Shipments' : 'No shipments found'"
+    ></app-no-results>
+  </div>
+</div>

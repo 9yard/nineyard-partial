@@ -1,0 +1,38 @@
+<main class="form_holder">
+    
+    <div class="right_side big_screen_h_100 position-relative">
+        <div class="d-flex form_container">
+            <div class="form_parent">
+                <form autocomplete="off" [formGroup]="loginForm">
+                    <div class="text-center">
+                        <h4 class=" font-weight-600  tk-roc-grotesk form_type_label">Login</h4>
+                    </div>
+                    <div class="form-group gap_top_11">
+                        <label for="username" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Username:</label>
+                        <input type="text" formControlName="username" class="form-control" id="username">
+                    </div>
+                    <div class="form-group gap_top_3pt4">
+                        <label for="pwd" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Password:</label>
+                        <input type="password" formControlName="password" class="form-control" id="pwd">
+                    </div>
+                    <div class="form-group err-msg">
+                        <label style="color: red">{{errorMessage}}</label>
+                    </div>
+
+                    <button type="button" [disabled]="loginForm.invalid" class=" gap_top_3pt4 btn btn_primary"
+                        (click)="login()">Login</button>
+
+                    <div class="d-flex justify-content-between align-items-center gap_top_4pt5">
+                        <a [routerLink]="['/account/sign-up']" class="text-uppercase primary_color  font-weight-600">Signup</a>
+                        <a [routerLink]="['/account/forgot-password']"
+                            class="text-uppercase primary_color  font-weight-600">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="app_link_of_form">
+             
+        </div>
+    </div>
+    
+</main>

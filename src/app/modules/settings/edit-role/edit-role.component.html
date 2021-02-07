@@ -1,0 +1,14 @@
+<div class="flex_center justify-content-between">
+    <h5 class="">Edit Role For {{data.user.userName}}</h5>
+    <i class="pointer fal fa-times" (click)="closePopup()"></i>
+</div>
+<div class="body_modal_logistics flex_center">
+    <div class="select_holder position-relative mt-2">
+        <i class="fal fa-angle-up pb-3"></i>
+        <i class="fal fa-angle-down pt-3"></i>
+
+        <select [(ngModel)]="roleId" (ngModelChange)="closeDialog()" class="form-control">
+            <option [value]="item.id" *ngFor="let item of allRoles">{{item.name}}</option>
+        </select>
+    </div>
+</div>

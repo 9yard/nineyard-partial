@@ -1,0 +1,3 @@
+https://www.nineyard.com/*   https://nineyard-scully.netlify.app/:splat   200!
+/api/*                       https://staging.datavanced.com/api/:splat    200
+/*                           /index.html                                  200

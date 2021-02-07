@@ -1,0 +1,10 @@
+:host {
+  background-color: var(--white);
+  display: block;
+  padding: var(--space-xl);
+  border-radius: 6px;
+  box-shadow: var(--box-shadow);
+  @media(max-width: 1500px) {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,81 @@
+<div class="box">
+  <mat-expansion-panel [expanded]="expanded" [togglePosition]="'before'">
+    <mat-expansion-panel-header>
+      <div class="box_header">
+        <div class="box_title">Box {{ box.boxNumber }}</div>
+        <div class="box_actions">
+          <div class="box_action">
+            <app-button
+              [buttonStyle]="'text'"
+              [buttonSize]="'action'"
+              [buttonColor]="scanInto === box.boxId ? 'success' : 'primary'"
+              (click)="scan($event)"
+            >
+              Scan{{ scanInto === box.boxId ? "ning" : "" }}
+              <span class="blinking-dot" *ngIf="scanInto === box.boxId"
+                >&bull;</span
+              >
+            </app-button>
+          </div>
+
+          <div
+            class="box_action"
+            (click)="cancelPropergation($event)"
+            [matMenuTriggerFor]="printMenu"
+          >
+            <app-button [buttonStyle]="'text'" [buttonSize]="'action'">
+              Print
+            </app-button>
+          </div>
+
+          <div
+            class="box_action"
+            (click)="cancelPropergation($event)"
+            [matMenuTriggerFor]="actionMenu"
+          >
+            <app-button [buttonStyle]="'text'" [buttonSize]="'action'">
+              <i class="far fa-ellipsis-v"></i>
+            </app-button>
+          </div>
+        </div>
+        <div class="box_drop-indicator">
+          <app-drag-indicator
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+            [cdkDropListConnectedTo]="shipyardService.dropListIds"
+            [actionType]="'Drop All'"
+            id="{{ box.boxId + '-all' }}"
+            [isSmall]="true"
+            [cdkDropListData]="{ boxId: box.boxId, partial: false }"
+          ></app-drag-indicator>
+          <app-drag-indicator
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+            [cdkDropListConnectedTo]="shipyardService.dropListIds"
+            [actionType]="'Drop some'"
+            [cdkDropListData]="{ boxId: box.boxId, partial: true }"
+            id="{{ box.boxId + '-some' }}"
+            [isSmall]="true"
+          ></app-drag-indicator>
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <div class="box_items" id="{{ box.boxId }}">
+      <ng-content></ng-content>
+    </div>
+  </mat-expansion-panel>
+</div>
+
+<mat-menu #printMenu="matMenu">
+  <button mat-menu-item (click)="printBox(box.boxNumber)">
+    Print box label
+  </button>
+  <button mat-menu-item (click)="print2DBox(box.boxNumber)">
+    Print 2D label
+  </button>
+</mat-menu>
+
+<mat-menu #actionMenu="matMenu">
+  <button mat-menu-item (click)="emptyBox(box.boxId)">Empty Box</button>
+  <button mat-menu-item (click)="deleteBox(box.boxId)">Delete Box</button>
+</mat-menu>

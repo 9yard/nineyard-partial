@@ -1,0 +1,132 @@
+<app-dialog
+  [title]="'Merge Shipment'"
+  [actions]="[
+    { text: 'Cancel', buttonStyle: 'underline' },
+    {
+      text: 'Confirm',
+      isDisabled: loading || (!selectedShipment && !selectedShipmentPlan)
+    }
+  ]"
+  (action)="action($event)"
+  (close)="close()"
+>
+  <mat-dialog-content cdkScrollable>
+    <div class="add-sku">
+      <div class="shipment-list">
+        <div class="shipment-list_tabs">
+          <div
+            class="shipment-list_tab"
+            (click)="selectedTab = 'draft'"
+            [ngClass]="{
+              'shipment-list_tab--selected': selectedTab === 'draft'
+            }"
+          >
+            Drafts
+          </div>
+          <div
+            class="shipment-list_tab"
+            (click)="selectedTab = 'working'"
+            [ngClass]="{
+              'shipment-list_tab--selected': selectedTab === 'working'
+            }"
+          >
+            Working
+          </div>
+          <div
+            class="shipment-list_tab"
+            (click)="selectedTab = 'shipment plans'"
+            [ngClass]="{
+              'shipment-list_tab--selected': selectedTab === 'shipment plans'
+            }"
+          >
+            Shipment Plan
+          </div>
+        </div>
+        <ng-template [ngIf]="selectedTab !== 'shipment plans'">
+          <div
+            class="shipment-list_item"
+            (click)="selectShipment(shipment.shipmentHeaderId)"
+            [ngClass]="{
+              'shipment-list_item--selected':
+                shipment.shipmentHeaderId === selectedShipment
+            }"
+            *ngFor="let shipment of shipments"
+          >
+            <div class="shipment-list_checkbox">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="shipment-list_item-title">
+              <div class="shipment-list_item-name">
+                {{
+                  shipment.amazonShipmentId
+                    ? shipment.amazonShipmentId
+                    : "Draft " + shipment.shipmentHeaderId
+                }}
+              </div>
+            </div>
+            <div class="shipment-list_item-meta">
+              <b>Created: </b> {{ shipment.createdOn | date: "MM/dd/yy" }}
+            </div>
+            <div class="shipment-list_item-meta">
+              <b>QTY: </b> {{ shipment.totalQty }}
+            </div>
+            <div class="shipment-list_item-meta">
+              <div class="shipment-list_type">
+                {{ shipment.shipmentType }}
+              </div>
+            </div>
+            <div class="shipment-list_item-meta">
+              <div class="shipment-list_warehouse">
+                <div
+                  [matTooltip]="
+                    shipment.sourceWarehouse?.addressLine1 +
+                    ' ' +
+                    shipment.sourceWarehouse?.city +
+                    ' ' +
+                    shipment.sourceWarehouse?.state
+                  "
+                >
+                  {{ shipment.sourceWarehouse?.code }}
+                </div>
+                <i class="fal fa-chevron-double-right"></i>
+                <div
+                  [matTooltip]="
+                    shipment.destinationWarehouse?.addressLine1 +
+                    ' ' +
+                    shipment.destinationWarehouse?.city +
+                    ' ' +
+                    shipment.destinationWarehouse?.state
+                  "
+                >
+                  {{ shipment.destinationWarehouse?.code }}
+                </div>
+              </div>
+            </div>
+            <div class="shipment-list_item-meta">
+              <div class="shipment-list_item-boxing" *ngIf="shipment.boxCount">
+                Has Boxes
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template [ngIf]="selectedTab === 'shipment plans'">
+          <div
+            class="shipment-list_item shipment-list_item--no-padding"
+            [ngClass]="{
+              'shipment-list_item--selected':
+                plan.shipmentPlanHeaderId === selectedShipmentPlan
+            }"
+            (click)="selectShipmentPlan(plan.shipmentPlanHeaderId)"
+            *ngFor="let plan of shipmentPlans"
+          >
+            <div class="shipment-list_checkbox">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <app-shipment-plan-item [plan]="plan"></app-shipment-plan-item>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </mat-dialog-content>
+</app-dialog>

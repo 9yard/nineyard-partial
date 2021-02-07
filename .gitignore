@@ -1,0 +1,8 @@
+node_modules
+dist
+.vs/slnx.sqlite
+.vs/VSWorkspaceState.json
+.vs/Datavanced.Web/v16/.suo
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,108 @@
+.add-sku {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+
+.shipment-list {
+  display: flex;
+  flex-flow: column nowrap;
+  &_tabs {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  &_tab {
+    font-family: var(--font-thin);
+    color: var(--color-gray-6);
+    cursor: pointer;
+    margin-bottom: var(--space-md);
+
+    &--selected {
+      font-family: var(--font-bold);
+      color: var(--color-gray-9);
+      text-decoration: underline;
+    }
+  }
+  &_item {
+    display: flex;
+    align-items: center;
+    padding: var(--space-md) 4px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-gray-2);
+    gap: var(--space-md);
+    &--selected {
+      .shipment-list_checkbox {
+        color: var(--color-primary-5);
+      }
+    }
+    &--no-padding {
+      padding: 0;
+    }
+    &:hover {
+      background-color: var(--color-gray-1);
+    }
+  }
+  &_checkbox {
+    width: 30px;
+    color: var(--color-gray-3);
+  }
+  &_item-title {
+    width: 30%;
+  }
+  &_item-name {
+    font-family: var(--font-bold);
+  }
+  &_item-id {
+    font-size: var(--text-sm);
+    color: var(--color-gray-5);
+    font-family: var(--font-thin);
+  }
+  &_item-meta {
+    width: 30%;
+  }
+
+  &_warehouse {
+    text-align: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 40px 1fr;
+    align-items: center;
+    justify-items: center;
+    div:first-child {
+      justify-self: end;
+    }
+    div:last-child {
+      justify-self: start;
+    }
+    i {
+      font-size: var(--text-sm);
+      margin: 0 var(--space-sm);
+      color: var(--color-gray-6);
+      justify-self: center;
+    }
+  }
+
+  &_type {
+    padding: var(--space-xs) var(--space-sm);
+    color: var(--color-gray-7);
+    font-family: var(--font-bold);
+    background-color: var(--color-gray-2);
+    justify-self: start;
+    border-radius: var(--border-radius-sm);
+    display: inline-block;
+  }
+
+  &_item-boxing {
+    color: var(--color-primary-5);
+    border-radius: var(--border-radius-sm);
+    white-space: nowrap;
+    text-align: center;
+    padding: 4px var(--space-xs);
+    margin: -4px 0;
+    text-transform: uppercase;
+    font-size: var(--text-sm);
+    font-family: var(--font-bold);
+  }
+}

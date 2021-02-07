@@ -1,0 +1,100 @@
+:root {
+  --color-primary-code: 224;
+  --color-secondary: 12;
+  --color-accent-code: 48;
+  --color-gray: 208;
+  --color-error: 12;
+  --color-success-code: 123;
+
+  --color-primary-9: hsl(var(--color-primary-code), 70%, 15%);
+  --color-primary-8: hsl(var(--color-primary-code), 70%, 26%);
+  --color-primary-7: hsl(var(--color-primary-code), 70%, 40%);
+  --color-primary-6: hsl(var(--color-primary-code), 80%, 50%);
+  --color-primary-5: hsl(var(--color-primary-code), 100%, 62%);
+  --color-primary-4: hsl(var(--color-primary-code), 100%, 70%);
+  --color-primary-3: hsl(var(--color-primary-code), 100%, 80%);
+  --color-primary-2: hsl(var(--color-primary-code), 100%, 94%);
+  --color-primary-1: hsl(var(--color-primary-code), 100%, 98%);
+
+  --color-secondary-9: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-8: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-7: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-6: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-5: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-4: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-3: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-2: hsl(var(--color-secondary), 100%, 62%);
+  --color-secondary-1: hsl(var(--color-secondary), 100%, 62%);
+
+  --color-accent-9: hsl(var(--color-accent-code), 50%, 20%);
+  --color-accent-8: hsl(var(--color-accent-code), 70%, 30%);
+  --color-accent-7: hsl(var(--color-accent-code), 80%, 40%);
+  --color-accent-6: hsl(var(--color-accent-code), 100%, 45%);
+  --color-accent-5: hsl(var(--color-accent-code), 100%, 50%);
+  --color-accent-4: hsl(var(--color-accent-code), 100%, 70%);
+  --color-accent-3: hsl(var(--color-accent-code), 100%, 80%);
+  --color-accent-2: hsl(var(--color-accent-code), 100%, 90%);
+  --color-accent-1: hsl(var(--color-accent-code), 100%, 97%);
+
+  --color-error-1: hsl(var(--color-error), 50%, 20%);
+  --color-error-5: hsl(var(--color-error), 85%, 40%);
+
+  --color-gray-9: hsl(var(--color-gray), 14%, 10%);
+  --color-gray-8: hsl(var(--color-gray), 14%, 20%);
+  --color-gray-7: hsl(var(--color-gray), 14%, 30%);
+  --color-gray-6: hsl(var(--color-gray), 14%, 40%);
+  --color-gray-5: hsl(var(--color-gray), 14%, 62%);
+  --color-gray-4: hsl(var(--color-gray), 14%, 75%);
+  --color-gray-3: hsl(var(--color-gray), 14%, 85%);
+  --color-gray-2: hsl(var(--color-gray), 14%, 92%);
+  --color-gray-1: hsl(var(--color-gray), 14%, 97%);
+
+  --background: #f9f9f9;
+
+  --color-success-9: #dfffc7;
+  --color-success-8: #dfffc7;
+  --color-success-7: #dfffc7;
+  --color-success-6: #dfffc7;
+  --color-success-5: hsl(var(--color-success-code), 40%, 49%);
+  --color-success-4: #dfffc7;
+  --color-success-3: #dfffc7;
+  --color-success-2: #dfffc7;
+  --color-success-1: #dfffc7;
+
+  /////// OLD colors
+  /* main colors */
+  --color-primary: #3a6dff;
+  --color-primary-light: #e7edff;
+  --color-primary-light-2: #c5cfeb;
+  --color-primary-dark: #23439c;
+
+  --color-accent: #f5414f;
+  --color-accent-light: #ffe2e4;
+  --color-accent-dark: #7e000a;
+  --color-accent-bg: color-mod(var(--color-accent) alpha(20%));
+
+  // shades - generated using chroma.js - 12 steps
+  --black: #1d1d21;
+  --gray-10: #2e2e31;
+  --gray-6: #555;
+  --gray-5: #777;
+  --gray-4: #aaa;
+  --gray-3: #bbb;
+  --gray-2: #ddd;
+  --gray-1: #e8e8e8;
+  --white: white;
+
+  /* feedback */
+  --color-success: #88c459;
+  --color-success-light: #dfffc7;
+  --color-error: #f5414f;
+  --color-warning: #ffd137;
+
+  /* typography */
+  --color-text: var(--gray-10);
+  --color-text-heading: var(--black);
+  --color-text-subtle: var(--gray-6);
+  --color-link: var(--color-primary);
+  --color-link-visited: var(--color-primary-dark);
+  --color-mark: var(--color-accent-bg);
+}

@@ -1,0 +1,22 @@
+<app-page-container-devider
+  [title]="'Connect your marketplaces'"
+  [center]="true"
+></app-page-container-devider>
+
+<div class="marketplace">
+  <div class="marketplace_list thin-scrollbars">
+    <app-marketplace-connections
+      *ngFor="let marketplace of marketplaces"
+      (refresh)="refreshAccounts()"
+      [marketplace]="marketplace.name"
+      [connectedAccounts]="marketplace.connectedAccount"
+    ></app-marketplace-connections>
+  </div>
+</div>
+
+<app-page-container-button-group>
+  <app-button [buttonStyle]="'underline'" (click)="goPrevious()"
+    >Previous</app-button
+  >
+  <app-button (click)="goNext()" [isDisabled]="!accountsCount">Next</app-button>
+</app-page-container-button-group>

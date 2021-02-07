@@ -1,0 +1,23 @@
+<app-dialog
+  [title]="data.title"
+  [description]="data.description"
+  [actions]="[
+    { text: 'Cancel', buttonStyle: 'underline' },
+    { text: 'Confirm', isDisabled: !qtyInput.valid }
+  ]"
+  (action)="action($event)"
+  (close)="close()"
+>
+  <div class="update-qty">
+    <div class="input-container">
+      <label for="" class="input-container_label">{{ data.inputLabel }}</label>
+      <input
+        type="number"
+        class="input-container_input"
+        [max]="data.maxQty"
+        [min]="data.minQty || 0"
+        [formControl]="qtyInput"
+      />
+    </div>
+  </div>
+</app-dialog>

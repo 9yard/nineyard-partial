@@ -1,0 +1,13 @@
+<div class="repricing" *ngIf="params.value.name" >
+  <div
+    class="repricing_model-name"
+    [ngClass]="{ 'repricing_model-name--inactive': !params.value.isActive }"
+  >
+    {{ params.value.name }}
+  </div>
+  <!-- <div class="repricing_paused" *ngIf="!params.value.isActive">
+    Paused
+  </div> -->
+</div>
+
+<app-button [buttonSize]="'action'" (click)="startEditing(params)" [buttonStyle]="'wire'" *ngIf="!params.value.name">Add Repricing Model</app-button>

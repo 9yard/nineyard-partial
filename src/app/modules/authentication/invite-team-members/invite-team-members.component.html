@@ -1,0 +1,54 @@
+<main class="form_holder">
+   
+    <div class="right_side big_screen_h_100">
+        <div class="d-flex form_container">
+            <div class="form_parent">
+                <form autocomplete="off" [formGroup]="inviteTeamMemberForm">
+                    <div class="text-center">
+                        <h4 class=" font-weight-600  tk-roc-grotesk form_type_label">Invite Team Members</h4>
+                    </div>
+                    <!-- gap_top_3pt4 -->
+
+                    <div class="gap_top_2pt2 d-flex flex-column justify-content-center align-items-center"
+                        formArrayName="items"
+                        *ngFor="let item of inviteTeamMemberForm.get('items')['controls']; let i = index;">
+                        <div class="invite_input_group" [formGroupName]="i">
+                            <div class="form-group">
+                                <label for="email" class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Email:</label>
+                                <input formControlName="email" (change)="verifyEmail(item)" class="form-control">
+                                <label style="color: red;" *ngIf="item.get('email').hasError('exists')">Email Already
+                                    Exists!</label>
+                            </div>
+                            <div *ngIf="false" class="form-group">
+                                <label for="permission_role"
+                                    class=" font-weight-600  tk-roc-grotesk gap_bottom_10">Permission
+                                    Role:</label>
+                                <div class="select_holder position-relative">
+                                    <select class="form-control" formControlName="roleId">
+                                        <option *ngFor="let rol of userRoles" [value]="rol.id">{{rol.name}}</option>
+                                    </select>
+                                    <i class="fal fa-angle-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="javascript:void(0)" (click)="addItem()"
+                            class="text-uppercase primary_color  font-weight-600">Add
+                            more members</a></div>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="button" [disabled]="inviteTeamMemberForm.invalid" (click)="sendInvite()"
+                            class=" gap_top_11 btn btn_primary">Send Invite</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="app_link_of_form">
+             
+        </div>
+    </div>
+</main>

@@ -1,0 +1,177 @@
+<div class="flex_center justify-content-between edit_ware mb-4">
+  <h5 class="text-capitalize">{{ data.type }} Warehouse</h5>
+  <i
+    class="pointer fal fa-times edit_ware_icon"
+    (click)="dialogRef.close()"
+  ></i>
+</div>
+
+<div class="edit_ware_block">
+  <form
+    [formGroup]="warehouseForm"
+    (ngSubmit)="
+      data.type === 'add' ? warehouseFormSubmit() : updateWarehouseFormSubmit()
+    "
+  >
+    <mat-dialog-content>
+      <div class="form-block">
+        <div class="px-3">
+          <div class="form-group position-relative check_unique">
+            <label class="control-label font-600" for="">Warehouse ID:</label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="Id"
+              (keyup)="checkId($event)"
+              [readonly]="data.type === 'edit'"
+            />
+            <i
+              class="fal fa-check primary_color"
+              *ngIf="uniqueId && checkedUniqueId"
+            ></i>
+            <i
+              class="fal fa-times danger_color"
+              *ngIf="!uniqueId && checkedUniqueId && !loadingUniqueId"
+            ></i>
+            <i
+              class="fal fa-sync fa-spin primary_color"
+              *ngIf="loadingUniqueId"
+            ></i>
+            <small *ngIf="!uniqueId && checkedUniqueId" class="danger_color"
+              >Warehouse ID is not available</small
+            >
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for="">Address Name:</label>
+            <input class="form-control" type="text" formControlName="Name" />
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for=""
+              >Address Line #1:</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              formControlName="Addressln1"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for=""
+              >Address Line #2:</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              formControlName="Addressln2"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for="">City:</label>
+            <input class="form-control" type="text" formControlName="City" />
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for="">State:</label>
+            <mat-form-field
+              appearance="fill"
+              class="mat-select-control mat-select-lg w-100"
+            >
+              <mat-select
+                disableRipple
+                id="State"
+                formControlName="State"
+                disableOptionCentering
+                panelClass="select-content-box select-control-search select-pb-0"
+              >
+                <div class="mat-select-search">
+                  <i class="pointer fal fa-search"></i>
+                  <input
+                    type="text"
+                    (keyup)="filterStates($event.target.value)"
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+                <div class="custom-scroll" style="max-height: 200px">
+                  <mat-option
+                    [value]="state.abbreviation"
+                    *ngFor="let state of states"
+                  >
+                    {{ state.name }}</mat-option
+                  >
+                </div>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for="">County:</label>
+            <input class="form-control" type="text" formControlName="Country" />
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600" for="">Country Code:</label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="CountryCode"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label font-600">Zip:</label>
+            <input
+              class="form-control"
+              type="number"
+              numbersOnly
+              formControlName="Postal"
+            />
+          </div>
+          <div class="form-group" *ngIf="false">
+            <label class="control-label font-600" for="">Priority Level:</label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="Priority"
+            />
+          </div>
+          <div class="fullfilment gap_top_5 gap_b_p_7pt5" *ngIf="false">
+            <p class="font-600">Fullfilment Settings</p>
+
+            <div class="d-flex flex-column gap_top_3">
+              <mat-checkbox formControlName="Isfba">FBA</mat-checkbox>
+              <mat-checkbox formControlName="Isfbm" class="mt-3"
+                >FBM</mat-checkbox
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+
+    <div
+      class="d-flex flex-wrap justify-content-center align-items-center pt-3"
+    >
+      <button
+        class="btn btn btn-secondary mt-2"
+        type="button"
+        (click)="dialogRef.close()"
+      >
+        Cancel
+      </button>
+
+      <button
+        *ngIf="data.type === 'edit'"
+        [disabled]="warehouseForm.invalid"
+        class="btn btn-primary ml-auto mt-2"
+        type="submit"
+      >
+        Update
+      </button>
+      <button
+        *ngIf="data.type != 'edit'"
+        [disabled]="warehouseForm.invalid || !uniqueId"
+        class="btn btn-primary ml-auto mt-2"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

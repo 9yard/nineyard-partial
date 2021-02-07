@@ -1,0 +1,26 @@
+:host {
+    display: block;
+}
+
+.price {
+    &_amount {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        padding-left: 14px;
+    }
+    &_icon {
+        position: absolute;
+        top: calc(50% - 8px);
+        left: 10px;
+        line-height: initial;
+    }
+    &_m-icon {
+        font-family: var(--font-bold);
+        color: var(--gray-10);
+    }
+    .fal.fa-bolt {
+        color: var(--gray-3);
+        
+    }
+}

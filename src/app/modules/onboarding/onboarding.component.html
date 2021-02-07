@@ -1,0 +1,13 @@
+<div class="onboarding">
+  <img class="onboarding_logo" src="assets/images/logo.png" />
+  <app-page-container>
+    <router-outlet></router-outlet>
+  </app-page-container>
+  
+  <div class="mt-3 text-center">
+    <a class="underline text-grey font-16 pointer"
+      (click)="logout()"
+      >Exit Onboarding</a
+    >
+  </div>
+</div>

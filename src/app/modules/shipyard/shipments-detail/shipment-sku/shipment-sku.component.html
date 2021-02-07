@@ -1,0 +1,82 @@
+<div
+  class="sku"
+  [ngClass]="{
+    'sku--in-box': box,
+    'sku--last': isLast,
+    'sku--not-movable': sku.totalBoxed === sku.qty || !canEdit,
+    'sku--error': errorMessage
+  }"
+>
+  <div
+    class="sku_image"
+    [style.backgroundImage]="'url(' + sku.imageUrl + ')'"
+  ></div>
+  <div class="sku_qty" *ngIf="!box">
+    <span class="sku_done" *ngIf="sku.totalBoxed === sku.qty">
+      <i class="fal fa-check"></i> ({{ sku.totalBoxed }})
+    </span>
+    <span class="sku_number" *ngIf="sku.totalBoxed !== sku.qty"
+      >{{ sku.totalBoxed }} / {{ sku.qty }}</span
+    >
+  </div>
+  <div class="sku_qty sku_qty--bold" *ngIf="box">
+    {{ sku.qty }}
+  </div>
+  <div class="sku_header">
+    <div
+      class="sku_sku"
+      matTooltip="Click to show in box"
+      [ngClass]="{ 'sku_sku--highlighted': highlighted }"
+      (click)="itemSelected(sku.sku)"
+    >
+      {{ sku.sku }}
+    </div>
+
+    <div class="sku_title" [matTooltip]="sku.title">{{ sku.title }}</div>
+  </div>
+  <div class="sku_actions">
+    <!-- <div class="sku_action" matTooltip="Update QTY">
+      <i class="fal fa-plus"></i>
+    </div> -->
+    <div
+      class="sku_action sku_action--error"
+      [matTooltip]="errorMessage"
+      matTooltipClass="error-tooltip"
+      *ngIf="errorMessage"
+    >
+      <i class="fal fa-exclamation-triangle"></i>
+    </div>
+    <div
+      class="sku_action"
+      matTooltip="Add to box"
+      [matMenuTriggerFor]="addToBoxMenu"
+      [matMenuTriggerData]="{ sku: sku }"
+      *ngIf="sku.qty - sku.totalBoxed && canBox && addToBoxMenu && canEdit"
+    >
+      <i class="fal fa-box-open"></i>
+    </div>
+    <div
+      class="sku_action"
+      matTooltip="Print SKU labels"
+      [matMenuTriggerFor]="printMenu"
+      [matMenuTriggerData]="{ sku: sku, box: box }"
+      *ngIf="sku.qty && printMenu"
+    >
+      <i class="fal fa-print"></i>
+      <div class="sku_print-number">
+        {{ sku.qty - sku.printedCount }}
+      </div>
+    </div>
+    <!-- <div class="sku_action" matTooltip="Add Notes">
+      <i class="fal fa-sticky-note"></i>
+    </div> -->
+  </div>
+  <div
+    class="sku_more-actions"
+    [matMenuTriggerFor]="actionMenu"
+    [matMenuTriggerData]="{ sku: sku, box: box }"
+    *ngIf="actionMenu && canEdit"
+  >
+    <i class="far fa-ellipsis-v"></i>
+  </div>
+</div>

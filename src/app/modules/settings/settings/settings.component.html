@@ -1,0 +1,205 @@
+<div class="logistics_home">
+  <div class="main-container grid_logistics">
+    <div class="right_part" *ngIf="paramType === 'shipping'">
+      <div class="right_content_holder gap_b_p_7pt5">
+        <div class="right_content">
+          <div
+            class="d-flex align-items-start flex-wrap gap_top_5 system_system w-100"
+            [ngClass]="
+              settingType === 'integrations' ? 'intergration_border_bottom' : ''
+            "
+          >
+            <div
+              class="system_left"
+              *ngIf="settingType === 'system_settings' && false"
+            >
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    (click)="toggleItem = 1"
+                  >
+                    <i
+                      class="fal fa-angle-right gap_right_15"
+                      [ngClass]="toggleItem === 1 ? 'opened' : ''"
+                    ></i>
+                    Printers
+                  </a>
+                </div>
+                <div class="toggle_body" *ngIf="toggleItem === 1">
+                  <a
+                    class="font_size_13 d-block lh_1 gap_top_0pt5"
+                    href="javascript:void(0)"
+                    >Deafults</a
+                  >
+                  <a
+                    class="font_size_13 d-block gap_top_1pt5 lh_1 left_green"
+                    href="javascript:void(0)"
+                    >Paper Size</a
+                  >
+                  <a
+                    class="font_size_13 d-block gap_top_1pt5 lh_1"
+                    href="javascript:void(0)"
+                    >Labels</a
+                  >
+                  <a
+                    class="font_size_13 d-block gap_top_1pt5 lh_1"
+                    href="javascript:void(0)"
+                    >Wifi</a
+                  >
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                  >
+                    <i class="fal fa-angle-right gap_right_15"></i>
+                    Logistics
+                  </a>
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                  >
+                    <i class="fal fa-angle-right gap_right_15"></i>
+                    Replenish
+                  </a>
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                  >
+                    <i class="fal fa-angle-right gap_right_15"></i>
+                    Advertising
+                  </a>
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    (click)="toggleItem = 2"
+                  >
+                    <i
+                      class="fal fa-angle-right gap_right_2"
+                      [ngClass]="toggleItem === 2 ? 'opened' : ''"
+                    ></i
+                    >Data
+                  </a>
+                </div>
+                <div class="toggle_body" *ngIf="toggleItem === 2">
+                  <a
+                    class="font_size_13 d-block lh_1 gap_top_0pt5"
+                    href="javascript:void(0)"
+                    >Lines & Tables</a
+                  >
+                  <a
+                    class="font_size_13 d-block gap_top_1pt5 lh_1 left_green"
+                    href="javascript:void(0)"
+                    >Exporting</a
+                  >
+                  <a
+                    class="font_size_13 d-block gap_top_1pt5 lh_1"
+                    href="javascript:void(0)"
+                    >Refresh</a
+                  >
+                  <a
+                    class="font_size_13 d-block gap_top_1pt5 lh_1"
+                    href="javascript:void(0)"
+                    >Views</a
+                  >
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    >Inventory</a
+                  >
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    >Orders</a
+                  >
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    >Reviews</a
+                  >
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    >Notifications</a
+                  >
+                </div>
+              </div>
+
+              <div class="system_toggle">
+                <div class="toggle_heading">
+                  <a
+                    class="font_size_16 font-weight-600 tk-roc-grotesk lh_1"
+                    href="javascript:void(0)"
+                    >Notifications</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="card_right_content_settings ml-auto mr-auto"
+              [ngClass]="
+                settingType === 'system_settings' ? 'has_system_left' : ''
+              "
+            >
+              <app-settings-home
+                [users]="users"
+                *ngIf="settingType === 'home'"
+                (refreshUser)="getAllUser()"
+              ></app-settings-home>
+              <app-settings-integrations *ngIf="settingType === 'integrations'">
+              </app-settings-integrations>
+              <app-settings-billing
+                *ngIf="settingType === 'billing'"
+              ></app-settings-billing>
+              <app-system-settings
+                *ngIf="settingType === 'system_settings'"
+              ></app-system-settings>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

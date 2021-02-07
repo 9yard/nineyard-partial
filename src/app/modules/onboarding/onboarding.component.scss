@@ -1,0 +1,17 @@
+@use '../../../scss/modules/mixins.scss';
+
+:host {
+  @include mixins.page-width(700px);
+  display: block;
+  overflow: auto;
+}
+
+.onboarding {
+  padding: var(--space-xl);
+
+  &_logo {
+    max-width: 250px;
+    margin: var(--space-lg) auto;
+    display: block;
+  }
+}

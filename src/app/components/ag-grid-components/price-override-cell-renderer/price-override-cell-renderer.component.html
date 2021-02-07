@@ -1,0 +1,7 @@
+<div class="price" *ngIf="params.value">
+  <div class="price_amount">{{ params.value.price | currency }}</div>
+  <!-- <div class="price_icon" [matTooltip]="tooltipText">
+    <i class="fal fa-bolt" [hidden]="!params.value.isAuto"></i>
+    <div ngClass="price_m-icon" [hidden]="params.value.isAuto">M</div>
+  </div> -->
+</div>

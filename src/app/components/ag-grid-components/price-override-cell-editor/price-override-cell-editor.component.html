@@ -1,0 +1,29 @@
+<div class="price-editor">
+  <div class="price-editor_actions">
+    <!-- <div
+      class="icon-action"
+      [ngClass]="{ 'icon-action--active': auto }"
+      (click)="setToAuto(true)"
+      matTooltip="Set price to auto"
+    >
+      <i class="fal fa-bolt"></i>
+    </div>
+
+    <div
+      class="icon-action"
+      [ngClass]="{ 'icon-action--active': !auto }"
+      (click)="setToAuto(false)"
+      matTooltip="Set price to manual"
+    >
+      M
+    </div> -->
+  </div>
+  <div class="price-editor_input">
+    <input type="text" #textInput [(ngModel)]="price" />
+  </div>
+  <div class="price-editor_actions">
+    <div class="icon-action" (click)="save()" matTooltip="Save">
+      <i class="far fa-check"></i>
+    </div>
+  </div>
+</div>

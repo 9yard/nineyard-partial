@@ -1,0 +1,47 @@
+@import "../../../assets/scss/variable.scss";
+
+.toaster_block {
+  .toast_content {
+    background-color: $light_black;
+    height: 45px;
+    min-width: 100px;
+    border-radius: 5px;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 40px;
+    align-items: center;
+
+    .toast_left {
+      .toast_check {
+        height: 22px;
+        width: 22px;
+        background: $primary_color_n;
+        border-radius: 100%;
+
+        i {
+          color: $light_black;
+        }
+      }
+
+      .toast_text {
+        p {
+          color: white;
+        }
+      }
+    }
+
+    .toast_right {
+      i {
+        color: white;
+        cursor: pointer;
+      }
+
+      p {
+        color: $little_light_grey;
+        text-transform: uppercase;
+        text-decoration: underline;
+      }
+    }
+  }
+}

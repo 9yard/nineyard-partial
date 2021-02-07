@@ -1,0 +1,26 @@
+.input-container {
+  &_label {
+    margin-bottom: var(--space-xs);
+    font-family: var(--font-light);
+  }
+  &_input {
+    padding: var(--space-sm-fixed) var(--space-md);
+    border-radius: 5px;
+    border: 2px solid var(--gray-1);
+    width: 100%;
+    &:focus {
+      border: 2px solid var(--color-primary-dark);
+      transition: ease-in 180ms border;
+    }
+    &--select {
+      padding: calc(var(--space-sm-fixed) + 1.5px) var(--space-md);
+    }
+    &--thin {
+      padding: var(--space-xs-fixed) var(--space-sm);
+    }
+    &.ng-touched.ng-invalid,
+    &.ng-touched.ng-invalid:focus {
+      border: 2px solid var(--color-accent);
+    }
+  }
+}

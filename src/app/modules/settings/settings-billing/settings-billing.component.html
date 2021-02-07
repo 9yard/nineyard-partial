@@ -1,0 +1,94 @@
+<app-page-container>
+  <app-page-container-devider [title]="'Invoices'"></app-page-container-devider>
+  <app-page-container-group>
+    <div class="plan">
+      <div class="column">
+        <label>Current Plan</label>
+        $189/mo
+      </div>
+      <div class="column">
+        <label>Active Users:</label>
+        3
+      </div>
+      <div class="column">
+        <label>Total per month:</label>
+        $567.00
+      </div>
+    </div>
+    <div class="invoice">
+      <h4>Invoices:</h4>
+      <table class="table">
+        <tr>
+          <td>#265</td>
+          <td>10/02/19</td>
+          <td>Total: $589.69</td>
+          <td><a href="#">Paid in full</a></td>
+        </tr>
+        <tr>
+          <td>#265</td>
+          <td>10/02/19</td>
+          <td>Total: $589.69</td>
+          <td><a href="#">Paid in full</a></td>
+        </tr>
+        <tr>
+          <td>#265</td>
+          <td>10/02/19</td>
+          <td>Total: $589.69</td>
+          <td><a href="#">Paid in full</a></td>
+        </tr>
+        <tr>
+          <td>#265</td>
+          <td>10/02/19</td>
+          <td>Total: $589.69</td>
+          <td><a href="#">Paid in full</a></td>
+        </tr>
+      </table>
+    </div>
+  </app-page-container-group>
+
+  <app-page-container-devider
+    [title]="'Payment Info'"
+  ></app-page-container-devider>
+  <app-page-container-group>
+    <form>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group mb-5">
+            <label class="font-600 tk-roc-grotesk gap_bottom_10"
+              >Credit Card Number:</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              value="6987 5485 6548 5478"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mb-5">
+            <label class="font-600 tk-roc-grotesk gap_bottom_10"
+              >EXP Date</label
+            >
+            <input class="form-control" type="text" value="06 - 22" />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mb-5">
+            <label class="font-600 tk-roc-grotesk gap_bottom_10"
+              >Name on card:</label
+            >
+            <input class="form-control" type="text" value="Mark Zukoert" />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mb-5">
+            <label class="font-600 tk-roc-grotesk gap_bottom_10">CCV:</label>
+            <input class="form-control" type="text" value="665" />
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <app-button>Close Account</app-button>
+  </app-page-container-group>
+</app-page-container>

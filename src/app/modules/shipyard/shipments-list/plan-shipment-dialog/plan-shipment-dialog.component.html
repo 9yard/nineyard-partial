@@ -1,0 +1,110 @@
+<app-dialog
+  [title]="data.title"
+  [actions]="actions"
+  (action)="dialogAction($event)"
+  (close)="close()"
+>
+  <mat-dialog-content>
+    <div class="plan-shipment">
+      <form
+        class="plan-shipment_form"
+        [formGroup]="planShipmentForm"
+        *ngIf="!shipmentPlan"
+      >
+        <div class="input-container">
+          <label for="" class="input-container_label">Shipment Type</label>
+          <select
+            name=""
+            id=""
+            class="input-container_input input-container_input--select"
+            formControlName="ShipmentType"
+          >
+            <option [value]="0">Standard</option>
+            <option [value]="1">Oversized</option>
+            <option [value]="2">Hazmat</option>
+            <option [value]="3">Small & Light</option>
+          </select>
+        </div>
+
+        <div class="input-container">
+          <label for="" class="input-container_label">From Warehouse</label>
+          <select
+            name=""
+            id=""
+            class="input-container_input input-container_input--select"
+            formControlName="fromWareHouseId"
+          >
+            <option
+              *ngFor="let warehouse of data.warehouses$ | async"
+              [value]="warehouse"
+            >
+              {{ warehouse.name }}
+            </option>
+          </select>
+        </div>
+
+        <ng-container *ngIf="!data.isDraft" formArrayName="skus">
+          <div
+            class="sku-inputs"
+            *ngFor="let skill of skus.controls; index as i"
+            [formGroupName]="i"
+          >
+            <div class="input-container">
+              <label for="" class="input-container_label">SKU</label>
+              <input
+                type="text"
+                class="input-container_input"
+                formControlName="sku"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let option of filteredOptionsArray[i] | async"
+                  [value]="option.sku"
+                >
+                  {{ option.sku }}
+                </mat-option>
+              </mat-autocomplete>
+            </div>
+            <div class="input-container">
+              <label for="" class="input-container_label">Quantity</label>
+              <input
+                type="number"
+                class="input-container_input"
+                formControlName="qty"
+                min="0"
+              />
+            </div>
+            <div
+              class="sku-inputs_icon"
+              matTooltip="Add SKU to shipment"
+              *ngIf="i === skus.controls.length - 1"
+              (click)="addSkuToForm(skus.controls.length)"
+            >
+              <i class="fal fa-plus"></i>
+            </div>
+            <div
+              class="sku-inputs_icon"
+              matTooltip="Remove SKU to shipment"
+              *ngIf="i !== skus.controls.length - 1"
+              (click)="removeSkuToForm(i)"
+            >
+              <i class="fal fa-times"></i>
+            </div>
+          </div>
+        </ng-container>
+      </form>
+      <div *ngIf="shipmentPlan?.length" class="plan-shipment_result">
+        <app-shipment-plan-item
+          [plan]="plan"
+          *ngFor="let plan of shipmentPlan"
+        ></app-shipment-plan-item>
+        <div class="note">
+          Shipment plans are saved for 48 hours. You can confirm the shipment
+          now, replan, or you can confirm this shipment plan when merging a
+          shipment
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</app-dialog>

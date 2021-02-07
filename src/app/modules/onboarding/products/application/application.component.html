@@ -1,0 +1,12 @@
+<div class="application" [ngClass]="{'application--selected': application.isSelected}" >
+    <div class="application_icon" [style.background-image]="'url('+ application.icon +')'"></div>
+    <div class="application_name">{{application.name}}</div>
+    <div class="application_description">{{application.description}}</div>
+    <div class="application_price">
+        <div class="application_amount">
+            {{application.price | currency}}
+        </div>
+        <div class="application_term">/ Month</div>
+        <div class="application_free">Free</div>
+    </div>
+</div>

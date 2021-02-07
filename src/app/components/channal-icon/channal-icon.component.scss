@@ -1,0 +1,35 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.icon {
+    width: 100%;
+    padding-bottom: calc(100% / 1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    &--amazon {
+        background-image: url('../../../assets/images/account-dropdown/amazon.png');
+    }
+    &--ebay {
+        background-image: url('../../../assets/images/account-dropdown/ebay.png');
+    }
+    &--walmart {
+        background-image: url('../../../assets/images/account-dropdown/walmart.png');
+    }
+    &--wish {
+        background-image: url('../../../assets/images/account-dropdown/wish.png');
+    }
+    &--newegg {
+        background-image: url('../../../assets/images/account-dropdown/newegg.png');
+    }
+    &--gray {
+        &:not(:hover) {
+            filter: grayscale(100%);
+        }
+    }
+}

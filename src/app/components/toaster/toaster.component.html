@@ -1,0 +1,27 @@
+<div class="toaster_block flex_center">
+  <div class="toast_content">
+    <div class="toast_left d-flex">
+      <div
+        class="toast_check mt-1 gap_right_2"
+        [ngStyle]="data.isErr ? { background: '#CF001A' } : {}"
+      >
+        <i
+          *ngIf="!data.isErr"
+          class="fas fa-check d-flex align-items-center justify-content-center h-100"
+        ></i>
+        <i
+          *ngIf="data.isErr"
+          class="fas fa-times d-flex align-items-center justify-content-center h-100"
+        ></i>
+      </div>
+      <div class="toast_text d-flex align-items-center">
+        <p class="font_size_14 lh_1">{{ data.message }}</p>
+      </div>
+      <div class="toast_right d-flex justify-content-end ml-3">
+        <div>
+          <i class="fal fa-times font_size_18" (click)="closeToaster()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

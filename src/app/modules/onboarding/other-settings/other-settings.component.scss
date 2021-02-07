@@ -1,0 +1,17 @@
+:host {
+    display: grid;
+    grid-auto-flow: row;
+    gap: var(--space-xl);
+}
+
+
+.settings-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-md);
+}
+
+.span-2 {
+    grid-column: 1/-1;
+}

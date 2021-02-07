@@ -1,0 +1,26 @@
+.errors {
+    margin: 24px 0;
+    &_item {
+        padding: 16px;
+        margin: 8px 0;
+        border-radius: 4px;
+        background-color: rgb(255, 244, 244);
+    }
+    &_sku {
+        grid-area: sku;
+        font-size: 14px;
+    }
+    &_reason {
+        grid-area: reason;
+        font-weight: 700;
+        color: rgb(255, 96, 96);
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .fa-info-circle {
+        margin-left: 8px;
+        color: black;
+        font-size: 12px;
+    }
+}

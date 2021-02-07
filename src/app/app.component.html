@@ -1,0 +1,51 @@
+<div class="wrapper" [class.isPrinting]="printService.isPrinting">
+  <!-- <ngx-ui-loader [class.d-none]="!show"></ngx-ui-loader> -->
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+  <router-outlet name="print"></router-outlet>
+  <div class="toaster_block flex_center" *ngIf="toast">
+    <div class="toast_content">
+      <div class="toast_left d-flex">
+        <div
+          class="toast_check gap_right_2"
+          [ngStyle]="isErr ? { background: '#CF001A' } : {}"
+        >
+          <i
+            *ngIf="!isErr"
+            class="fas fa-check d-flex align-items-center justify-content-center h-100"
+          ></i>
+          <i
+            *ngIf="isErr"
+            class="fas fa-times d-flex align-items-center justify-content-center h-100"
+          ></i>
+        </div>
+        <div class="toast_text d-flex align-items-center">
+          <p class="font_size_14 lh_1">{{ message }}</p>
+        </div>
+      </div>
+      <div class="toast_right d-flex justify-content-end">
+        <div>
+          <i class="fal fa-times font_size_18" (click)="closeToast()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="app-container"
+    [ngClass]="{
+      'app-container--hide-nav': !isNavVisable,
+      'app-container--collapse-nav': isNavCollapsed
+    }"
+  >
+    <app-header *ngIf="isNavVisable"></app-header>
+
+    <app-common-sidebar
+      (toggleSidebar)="isNavCollapsed = $event"
+    ></app-common-sidebar>
+
+    <div class="app-container_page">
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+      <router-outlet name="print"></router-outlet>
+    </div>
+  </div>
+</div>

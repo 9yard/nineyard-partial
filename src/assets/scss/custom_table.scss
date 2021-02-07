@@ -1,0 +1,193 @@
+.scroll_style {
+    padding-right: 0 !important;
+}
+
+.table {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid $little_light_grey;
+    background-color: white;
+    .tableHeader_holder {
+        padding-right: 4px;
+        background: $little_light_grey;
+    }
+    &:hover {
+        .tableHeader_holder {
+            padding-right: 6px;
+        }
+    }
+
+    .tableHeader {
+        .grid_child {
+            font-weight: 600;
+            .fa-filter {
+                opacity: 0;
+            }
+            &:hover {
+                .fa-filter {
+                    opacity: 1;
+                }
+            }
+
+            &.active {
+                .fa-filter {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .configure_column_activator_holder {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+        background-color: $for_opaque_grey;
+
+        .configure_column_activator {
+            position: relative;
+            width: 100%;
+            .app_popup_configure_column {
+                position: absolute;
+                top: 8px;
+                right: 0;
+                width: 200px;
+                display: none;
+            }
+        }
+        &:hover {
+            .configure_column_activator {
+                .app_popup_configure_column {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .grid_child {
+        min-width: 120px;
+        max-width: 120px;
+        border-bottom: 1px solid $little_light_grey;
+        height: 52px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        &.check_box_holder {
+            min-width: unset;
+            max-width: unset;
+            padding: 0 0 0 20px;
+        }
+        img {
+            height: 45px;
+            object-fit: contain;
+        }
+
+        i.fa-filter {
+            color: $for_opaque_grey;
+        }
+
+        .form-control {
+            height: 30px;
+        }
+    }
+
+    &.one_child {
+        .grid_child {
+            min-width: 240px !important;
+            max-width: 240px !important;
+        }
+    }
+
+    &.two_child {
+        .grid_child {
+            min-width: 240px !important;
+            max-width: 240px !important;
+
+            &:nth-child(1) {
+                min-width: unset !important;
+                max-width: unset !important;
+            }
+        }
+    }
+}
+
+.tableHeader {
+    height: 30px;
+    overflow-y: hidden !important;
+    background: $little_light_grey;
+
+    .grid_child {
+        height: 30px;
+    }
+}
+
+.table_body_holder,
+.tableHeader {
+    max-width: calc(100vw - (165px + 395px + 35px));
+    overflow: auto;
+    min-width: 240px;
+}
+
+.table_body_holder {
+    height: calc(100vh - 160px);
+}
+
+.sku_search,
+.notes_holder {
+    position: absolute;
+    width: 173px;
+    z-index: 9999999999;
+    display: none;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0px 4px 20px rgba($color: black, $alpha: 0.25);
+}
+
+.sku_search {
+    height: 227px;
+}
+
+.notes_holder {
+    min-height: 80px;
+    .form-control {
+        height: 60px;
+        resize: none !important;
+    }
+}
+
+.app_popup_configure_column {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0px 4px 20px rgba($color: black, $alpha: 0.25);
+    max-height: 300px;
+    overflow: auto;
+}
+
+.sku_search.show {
+    display: block;
+}
+
+.add_note_btn.btn_primary {
+    width: 100px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+}
+
+:host ::ng-deep {
+    .form-control {
+        width: 100% !important;
+    }
+}
+
+@media (hover: none) {
+    .tableHeader {
+        overflow: hidden;
+    }
+    .table_body_holder {
+        overflow: scroll;
+    }
+}

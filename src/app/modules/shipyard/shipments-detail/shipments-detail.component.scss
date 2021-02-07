@@ -1,0 +1,164 @@
+@use '../../../../scss/modules/mixins.scss';
+$box-height: calc(100vh - 175px);
+
+:host {
+  display: block;
+  margin: calc(-1 * var(--space-md));
+}
+
+.shipment-detail {
+  display: grid;
+  grid-template: "left right" $box-height "actions actions" auto / 1fr 1fr;
+  gap: var(--space-md) var(--space-xxl);
+  @include mixins.page-width(1400px);
+
+  &--draft {
+    grid-template: "left left" $box-height "actions actions" auto / 1fr 1fr;
+
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.column {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: var(--space-md);
+
+  &--left {
+    grid-area: left;
+  }
+
+  &--right {
+    grid-area: right;
+  }
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &_title {
+    font-size: var(--text-xl);
+    font-family: var(--font-bold);
+  }
+
+  &_actions {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  &_action {
+  }
+
+  &_filters {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    gap: var(--space-sm);
+    margin-top: 20px;
+
+    &--full-width {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &_filter {
+  }
+
+  &_no-results {
+    margin: var(--space-lg) auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+app-shipment-sku-list {
+  overflow: auto;
+}
+
+app-shipment-box-list {
+  overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.round-input {
+  position: relative;
+
+  &_input {
+    box-shadow: var(--box-shadow);
+    border-radius: 50px;
+    border: 1px solid var(--color-gray-2);
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--space-xs) var(--space-md);
+    height: 33px;
+  }
+
+  &_icon {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  &_clear {
+    position: absolute;
+    right: 14px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--color-gray-7);
+  }
+  &_label {
+    font-size: var(--text-sm);
+    color: var(--color-gray-5);
+    position: absolute;
+    top: -18px;
+    left: 5px;
+  }
+}
+
+.actions {
+  grid-area: actions;
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: center;
+}
+
+.shipment-box-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.drop-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+app-no-results {
+  margin: 0 auto;
+  display: block;
+  max-width: 400px;
+}
+
+.expand {
+  display: flex;
+  flex-flow: column nowrap;
+  &--collapse {
+    flex-flow: column-reverse nowrap;
+  }
+  .far {
+    line-height: 11px;
+  }
+}
