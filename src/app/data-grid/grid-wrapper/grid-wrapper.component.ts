@@ -56,7 +56,9 @@ export class GridWrapperComponent implements OnInit, OnDestroy {
     public skuGridBaseConfigService: SkuGridBaseConfigService,
     public shipyardService: ShipyardService,
     private headerService: HeaderService
-  ) {}
+  ) {
+    this.tabToNextCell = this.tabToNextCell.bind(this);
+  }
 
   ngOnInit(): void {
     this.headerService.remoteActionBroadcaster
@@ -77,5 +79,25 @@ export class GridWrapperComponent implements OnInit, OnDestroy {
   onGridReady(params: GridOptions) {
     this.gridApi = params.api;
     this.gridApiService.gridApi$.next(params);
+  }
+
+  tabToNextCell(params) {
+    var previousCell = params.previousCellPosition,
+      lastRowIndex = previousCell.rowIndex,
+      nextRowIndex = params.backwards ? lastRowIndex - 1 : lastRowIndex + 1,
+      renderedRowCount = this.gridApi.getModel().getRowCount(),
+      result;
+    if (nextRowIndex < 0) {
+      nextRowIndex = -1;
+    }
+    if (nextRowIndex >= renderedRowCount) {
+      nextRowIndex = renderedRowCount - 1;
+    }
+    result = {
+      rowIndex: nextRowIndex,
+      column: previousCell.column,
+      floating: previousCell.floating,
+    };
+    return result;
   }
 }

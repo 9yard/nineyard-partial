@@ -1,10 +1,18 @@
 <div class="header">
   <div class="header_left">
     <div class="header_title">{{ headerService.title | async }}</div>
-    <!-- <div class="header_breadcrumbs">
-      <div class="header_breadcrumb">Shipyard</div>
-      <div class="header_breadcrumb">Sku List</div>
-    </div> -->
+    <div class="header_breadcrumbs">
+      <div
+        class="header_breadcrumb active"
+        *ngFor="let item of breadcrumbs"
+        [routerLink]="[item.url]"
+      >
+        {{ item.label }}
+      </div>
+      <div class="header_breadcrumb text-border">
+        {{ tempBreadcrumbs[tempBreadcrumbs.length - 1].label }}
+      </div>
+    </div>
   </div>
   <div class="header_actions">
     <div class="header_action">
