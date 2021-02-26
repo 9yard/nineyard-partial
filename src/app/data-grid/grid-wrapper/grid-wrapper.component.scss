@@ -33,3 +33,44 @@
     background-color: var(--color-gray-3);
   }
 }
+
+.check-wrapper {
+  margin-bottom: -35px;
+  margin-left: 13px;
+  position: relative;
+  z-index: 99;
+  input[type="checkbox"] + label {
+    display: block;
+    margin: 0.2em;
+    cursor: pointer;
+    padding: 0.2em;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label:before {
+    content: "\2714";
+    border: 2px solid #999;
+    border-radius: 0.2em;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding-left: 0;
+    padding-bottom: 0;
+    vertical-align: bottom;
+    color: transparent;
+    transition: 0.2s;
+  }
+
+  input[type="checkbox"] + label:active:before {
+    transform: scale(0);
+  }
+
+  input[type="checkbox"]:checked + label:before {
+    background-color: #2196f3;
+    border-color: #2196f3;
+    color: #fff;
+  }
+}

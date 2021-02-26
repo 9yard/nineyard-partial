@@ -1,5 +1,12 @@
 import { ShipyardService } from "src/app/modules/shipyard/shipyard.service";
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from "@angular/core";
 
 import {
   GridApi,
@@ -23,6 +30,7 @@ import { SkuGridBaseConfigService } from "./../sku-grid-base-config.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { HeaderService } from "src/app/components/header/header.service";
 import { Subject } from "rxjs";
+import { ChangeDetectionStrategy } from "@angular/compiler/src/compiler_facade_interface";
 
 ModuleRegistry.registerModules([
   ServerSideRowModelModule,
@@ -40,7 +48,7 @@ ModuleRegistry.registerModules([
   templateUrl: "./grid-wrapper.component.html",
   styleUrls: ["./grid-wrapper.component.scss"],
 })
-export class GridWrapperComponent implements OnInit, OnDestroy {
+export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() gridOptions = this.skuGridBaseConfigService.gridOptions;
   @Input() columnDefs;
   modules: Module[] = [ServerSideRowModelModule];
@@ -48,14 +56,17 @@ export class GridWrapperComponent implements OnInit, OnDestroy {
   defaultColDef;
   rowModelType;
   rowData: [];
+  tempCount = 0;
   private destroy$ = new Subject<void>();
 
+  isSelectAll: boolean = false;
   constructor(
     public gridActionsService: GridActionsService,
     private gridApiService: GridApiService,
     public skuGridBaseConfigService: SkuGridBaseConfigService,
     public shipyardService: ShipyardService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private cdr: ChangeDetectorRef
   ) {
     this.tabToNextCell = this.tabToNextCell.bind(this);
   }
@@ -74,6 +85,26 @@ export class GridWrapperComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.unsubscribe();
+  }
+
+  ngAfterViewInit() {
+    let tempCount = [];
+    setTimeout(() => {
+      this.gridOptions.api.forEachNode((node) => {
+        tempCount.push(node.data);
+        this.gridActionsService.selectedRows.forEach((element) => {
+          if (node.data && node.data.Sku && element.Sku == node.data.Sku) {
+            node.setSelected(true);
+          }
+        });
+      });
+      if (tempCount.length == this.gridActionsService.selectedRows.length) {
+        this.isSelectAll = true;
+      } else {
+        this.isSelectAll = false;
+      }
+      this.cdr.detectChanges();
+    }, 2000);
   }
 
   onGridReady(params: GridOptions) {
@@ -99,5 +130,16 @@ export class GridWrapperComponent implements OnInit, OnDestroy {
       floating: previousCell.floating,
     };
     return result;
+  }
+
+  onSelectAll() {
+    this.isSelectAll = !this.isSelectAll;
+    this.gridOptions.api.forEachNode((node) => {
+      if (this.isSelectAll) {
+        node.setSelected(true);
+      } else {
+        this.gridOptions.api.deselectNode(node);
+      }
+    });
   }
 }

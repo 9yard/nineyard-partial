@@ -60,6 +60,15 @@
     >
   </div>
 </div>
+<div class="check-wrapper">
+  <input
+    type="checkbox"
+    id="1"
+    [checked]="isSelectAll"
+    (change)="onSelectAll()"
+  />
+  <label for="1"></label>
+</div>
 
 <div
   class="grid"
