@@ -80,6 +80,9 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe((e) => {
         this.gridApi.refreshServerSideStore({});
       });
+    this.gridActionsService.dataUpdate$.subscribe(() => {
+      this.dataChanges();
+    });
   }
 
   ngOnDestroy(): void {
@@ -88,8 +91,30 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let tempCount = [];
     setTimeout(() => {
+      let tempCount = [];
+      this.gridOptions.api.forEachNode((node) => {
+        tempCount.push(node.data);
+        console.log(node.data);
+
+        this.gridActionsService.selectedRows.forEach((element) => {
+          if (node.data && node.data.Sku && element.Sku == node.data.Sku) {
+            node.setSelected(true);
+          }
+        });
+      });
+      if (tempCount.length == this.gridActionsService.selectedRows.length) {
+        this.isSelectAll = true;
+      } else {
+        this.isSelectAll = false;
+      }
+      this.cdr.detectChanges();
+    }, 3000);
+  }
+
+  dataChanges() {
+    setTimeout(() => {
+      let tempCount = [];
       this.gridOptions.api.forEachNode((node) => {
         tempCount.push(node.data);
         this.gridActionsService.selectedRows.forEach((element) => {

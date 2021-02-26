@@ -19,6 +19,7 @@ import { ShipyardService } from "./../modules/shipyard/shipyard.service";
 import { PlanShipmentDialogComponent } from "../modules/shipyard/shipments-list/plan-shipment-dialog/plan-shipment-dialog.component";
 
 import { GridApiService } from "./grid-api.service";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -31,6 +32,9 @@ export class GridActionsService {
   selectedFilters;
   printer;
   account;
+
+  private dataUpdated = new BehaviorSubject<any>(null);
+  dataUpdate$ = this.dataUpdated.asObservable();
 
   constructor(
     private priceyardService: PriceyardService,
@@ -137,6 +141,7 @@ export class GridActionsService {
 
   updateSelectedRows(e) {
     this.selectedRows = this.getSelected();
+    this.dataUpdated.next(this.selectedRows);
   }
 
   updateSelectedFilters() {
