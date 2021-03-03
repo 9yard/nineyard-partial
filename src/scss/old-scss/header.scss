@@ -119,3 +119,10 @@
 //         }
 //     }
 // }
+.active {
+  color: var(--color-primary);
+}
+
+.text-border:hover {
+  text-decoration: none !important;
+}

@@ -23,6 +23,11 @@ const routes: Routes = [
         component: ShipmentsDetailComponent,
         data: { title: "Shipment" },
       },
+      {
+        path: "",
+        redirectTo: "sku-list",
+        pathMatch: "full",
+      },
     ],
   },
 ];

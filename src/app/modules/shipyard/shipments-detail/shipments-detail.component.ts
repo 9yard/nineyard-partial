@@ -58,6 +58,7 @@ export class ShipmentsDetailComponent implements OnInit, OnDestroy {
   name = new FormControl("all");
   boxSearch = new FormControl("");
   shipmentSkus$: Observable<any> = new Observable();
+  boxSort = new FormControl("default");
   shipmentBoxes$: Observable<any> = new Observable();
   expanded = true;
   skus = [];
@@ -191,7 +192,10 @@ export class ShipmentsDetailComponent implements OnInit, OnDestroy {
           })
         );
 
-        this.shipmentBoxes$ = this.boxSearch.valueChanges.pipe(
+        this.shipmentBoxes$ = merge(
+          this.boxSearch.valueChanges,
+          this.boxSort.valueChanges
+        ).pipe(
           startWith(""),
           switchMap(() => of(this.shipment.boxes)),
           map((boxes) => {
@@ -214,6 +218,13 @@ export class ShipmentsDetailComponent implements OnInit, OnDestroy {
                 return box.skus.length ? box : false;
               }
             });
+          }),
+          map((boxes: any[]) => {
+            if (this.boxSort.value == "default") {
+              return boxes.sort(this.compare);
+            } else {
+              return boxes.sort(this.compare).reverse();
+            }
           })
         );
       },
@@ -836,4 +847,25 @@ export class ShipmentsDetailComponent implements OnInit, OnDestroy {
   //     qty: sku.qty - sku.totalBoxed,
   //   });
   // }
+
+  onSearchCancel(value) {
+    if (value == "skuSearch") {
+      this.skuSearch.setValue("");
+    } else {
+      this.boxSearch.setValue("");
+    }
+  }
+
+  compare(a, b) {
+    const valueA = a.boxId;
+    const valueB = b.boxId;
+
+    let comparison = 0;
+    if (valueA > valueB) {
+      comparison = 1;
+    } else if (valueA < valueB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
 }

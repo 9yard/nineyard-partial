@@ -19,6 +19,7 @@ import { ShipyardService } from "./../modules/shipyard/shipyard.service";
 import { PlanShipmentDialogComponent } from "../modules/shipyard/shipments-list/plan-shipment-dialog/plan-shipment-dialog.component";
 
 import { GridApiService } from "./grid-api.service";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -31,6 +32,12 @@ export class GridActionsService {
   selectedFilters;
   printer;
   account;
+
+  private dataUpdated = new BehaviorSubject<any>(null);
+  dataUpdate$ = this.dataUpdated.asObservable();
+
+  private isAllSelected = new BehaviorSubject<any>(null);
+  isAllSelected$ = this.isAllSelected.asObservable();
 
   constructor(
     private priceyardService: PriceyardService,
@@ -61,6 +68,10 @@ export class GridActionsService {
     this.priceyardService
       .EditNote(data.Note, data.Sku, data.Account, data.FulfillmentType)
       .subscribe();
+  }
+
+  setIsSelected(value) {
+    this.isAllSelected.next(value);
   }
 
   saveMinPrice(event) {
@@ -137,6 +148,11 @@ export class GridActionsService {
 
   updateSelectedRows(e) {
     this.selectedRows = this.getSelected();
+    this.dataChanges(this.selectedRows);
+  }
+
+  dataChanges(changes) {
+    this.dataUpdated.next(changes);
   }
 
   updateSelectedFilters() {

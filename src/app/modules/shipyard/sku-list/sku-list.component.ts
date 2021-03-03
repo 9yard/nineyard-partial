@@ -10,6 +10,7 @@ import { ShipyardSkuGridConfigService } from "./../../../data-grid/shipyard-sku-
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ShipyardService } from "../shipyard.service";
+import { GridActionsService } from "../../../data-grid/grid-actions.service";
 
 @Component({
   selector: "app-sku-list",
@@ -32,6 +33,7 @@ export class SkuListComponent implements OnInit, OnDestroy {
               rowData: response.data,
               rowCount: response.totalCount,
             });
+            this.gridActionsService.dataChanges(response.data);
           }
         },
         () => params.fail()
@@ -42,6 +44,7 @@ export class SkuListComponent implements OnInit, OnDestroy {
   constructor(
     private shipyardSkuGridConfigService: ShipyardSkuGridConfigService,
     private gridApiService: GridApiService,
+    private gridActionsService: GridActionsService,
     private shipyardService: ShipyardService
   ) {}
 

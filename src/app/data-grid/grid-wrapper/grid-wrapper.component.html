@@ -60,6 +60,15 @@
     >
   </div>
 </div>
+<div class="check-wrapper">
+  <input
+    type="checkbox"
+    id="1"
+    [checked]="isSelectAll"
+    (change)="onSelectAll()"
+  />
+  <label for="1"></label>
+</div>
 
 <div
   class="grid"
@@ -71,7 +80,10 @@
     class="ag-theme-alpine"
     [gridOptions]="gridOptions"
     [columnDefs]="columnDefs"
+    [suppressRowClickSelection]="true"
+    (rowSelected)="onRowSelected($event)"
     [modules]="modules"
+    [tabToNextCell]="tabToNextCell"
   >
   </ag-grid-angular>
 </div>

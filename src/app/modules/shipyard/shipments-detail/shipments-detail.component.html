@@ -40,13 +40,13 @@
             [formControl]="skuSearch"
             placeholder="Search SKU's"
           />
-          <!-- <div
+          <div
             class="round-input_clear"
             *ngIf="skuSearch.value"
-            (click)="skuSearch.value = ''"
+            (click)="onSearchCancel('skuSearch')"
           >
             <i class="fal fa-times"></i>
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="column_filter">
@@ -146,8 +146,8 @@
         </div>
       </div>
     </div>
-    <div class="column_filters column_filters--full-width">
-      <div class="column_filter">
+    <div class="column_filters column_filters--full-width d-flex">
+      <div class="column_filter w_70">
         <div class="round-input">
           <input
             type="text"
@@ -155,13 +155,13 @@
             placeholder="Search SKU"
             [formControl]="boxSearch"
           />
-          <!-- <div
+          <div
             class="round-input_clear"
             *ngIf="boxSearch.value"
-            (click)="boxSearch.value = ''"
+            (click)="onSearchCancel('boxSearch')"
           >
             <i class="fal fa-times"></i>
-          </div> -->
+          </div>
         </div>
       </div>
 
@@ -174,15 +174,16 @@
             <option>Unboxed</option>
           </select>
         </div>
-      </div>
+      </div> -->
       <div class="column_filter">
         <div class="round-input">
-          <select type="text" class="round-input_input" [formControl]="skuSort">
-            <option [value]="'default'">Sort</option>
-            <option [value]="'qty'">Quantity</option>
+          <label class="round-input_label"> Sort: </label>
+          <select type="text" class="round-input_input" [formControl]="boxSort">
+            <option [value]="'default'">Ascending</option>
+            <option [value]="'desc'">Descending</option>
           </select>
         </div>
-      </div> -->
+      </div>
     </div>
 
     <app-shipment-box-list>

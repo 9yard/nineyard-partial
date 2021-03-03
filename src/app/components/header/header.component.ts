@@ -1,6 +1,6 @@
 import { MatDialog } from "@angular/material/dialog";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import {
   HttpTransportType,
   HubConnection,
@@ -11,7 +11,7 @@ import {
 import { SettingsService } from "src/app/services/settings.service";
 
 import { shareReplay } from "rxjs/internal/operators/shareReplay";
-import { tap } from "rxjs/operators";
+import { filter, tap } from "rxjs/operators";
 
 import { AuthService } from "./../../services/auth.service";
 
@@ -19,6 +19,12 @@ import { HeaderService } from "./header.service";
 
 import { ProcessesDialogComponent } from "./processes-dialog/processes-dialog.component";
 import { UpdatesDialogComponent } from "./updates-dialog/updates-dialog.component";
+
+export interface IBreadCrumb {
+  label: string;
+  url: string;
+}
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -35,14 +41,29 @@ export class HeaderComponent implements OnInit {
   accountDropdownDisabled = false;
 
   private hubConnection: HubConnection;
+  public breadcrumbs: IBreadCrumb[];
+  public breadcrumbsEnd: Object;
+  public tempBreadcrumbs: IBreadCrumb[];
   constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     public headerService: HeaderService,
     private settingsService: SettingsService,
     private dialog: MatDialog,
     private authService: AuthService
-  ) {}
+  ) {
+    this.tempBreadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+    this.breadcrumbs = Object.assign([], this.tempBreadcrumbs);
+    this.breadcrumbs.splice(-1, this.breadcrumbs.length);
+  }
 
   ngOnInit(): void {
+    this.router.events.subscribe((val) => {
+      this.tempBreadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
+      this.breadcrumbs = Object.assign([], this.tempBreadcrumbs);
+      this.breadcrumbs.splice(-1, this.breadcrumbs.length);
+    });
+
     this.accounts = this.settingsService.GetAccountsByType().pipe(
       shareReplay(1),
       tap((e) => {
@@ -144,6 +165,41 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  buildBreadCrumb(
+    route: ActivatedRoute,
+    url: string = "",
+    breadcrumbs: IBreadCrumb[] = []
+  ): IBreadCrumb[] {
+    let label =
+      route.routeConfig && route.routeConfig.data
+        ? route.routeConfig.data.title
+        : "";
+    let path =
+      route.routeConfig && route.routeConfig.data ? route.routeConfig.path : "";
+
+    const lastRoutePart = path.split("/").pop();
+    const isDynamicRoute = lastRoutePart.startsWith(":");
+    if (isDynamicRoute && !!route.snapshot) {
+      const paramName = lastRoutePart.split(":")[1];
+      path = path.replace(lastRoutePart, route.snapshot.params[paramName]);
+      label = route.snapshot.params[paramName];
+    }
+    const nextUrl = path ? `${url}/${path}` : url;
+
+    const breadcrumb: IBreadCrumb = {
+      label: label,
+      url: nextUrl,
+    };
+
+    // Only adding route with non-empty label
+    const newBreadcrumbs = breadcrumb.label
+      ? [...breadcrumbs, breadcrumb]
+      : [...breadcrumbs];
+    if (route.firstChild) {
+      return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
+    }
+    return newBreadcrumbs;
+  }
   //generate alll marketplaces
   // value will be array of intergration ID
 }
