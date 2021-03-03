@@ -146,8 +146,8 @@
         </div>
       </div>
     </div>
-    <div class="column_filters column_filters--full-width">
-      <div class="column_filter">
+    <div class="column_filters column_filters--full-width d-flex">
+      <div class="column_filter w_70">
         <div class="round-input">
           <input
             type="text"
@@ -177,6 +177,7 @@
       </div> -->
       <div class="column_filter">
         <div class="round-input">
+          <label class="round-input_label"> Sort: </label>
           <select type="text" class="round-input_input" [formControl]="boxSort">
             <option [value]="'default'">Ascending</option>
             <option [value]="'desc'">Descending</option>

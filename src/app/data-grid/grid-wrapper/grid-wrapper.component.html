@@ -80,6 +80,8 @@
     class="ag-theme-alpine"
     [gridOptions]="gridOptions"
     [columnDefs]="columnDefs"
+    [suppressRowClickSelection]="true"
+    (rowSelected)="onRowSelected($event)"
     [modules]="modules"
     [tabToNextCell]="tabToNextCell"
   >

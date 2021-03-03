@@ -81,6 +81,17 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
         this.gridApi.refreshServerSideStore({});
       });
     this.gridActionsService.dataUpdate$.subscribe(() => {
+      setTimeout(() => {
+        if (this.isSelectAll) {
+          this.gridOptions.api.forEachNode((node) => {
+            if (this.isSelectAll) {
+              node.setSelected(true);
+            } else {
+              this.gridOptions.api.deselectAll();
+            }
+          });
+        }
+      }, 1000);
       this.dataChanges();
     });
   }
@@ -91,25 +102,7 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      let tempCount = [];
-      this.gridOptions.api.forEachNode((node) => {
-        tempCount.push(node.data);
-        console.log(node.data);
-
-        this.gridActionsService.selectedRows.forEach((element) => {
-          if (node.data && node.data.Sku && element.Sku == node.data.Sku) {
-            node.setSelected(true);
-          }
-        });
-      });
-      if (tempCount.length == this.gridActionsService.selectedRows.length) {
-        this.isSelectAll = true;
-      } else {
-        this.isSelectAll = false;
-      }
-      this.cdr.detectChanges();
-    }, 3000);
+    this.dataChanges();
   }
 
   dataChanges() {
@@ -124,9 +117,11 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       });
       if (tempCount.length == this.gridActionsService.selectedRows.length) {
-        this.isSelectAll = true;
+        this.gridActionsService.setIsSelected(true);
+        // this.isSelectAll = true;
       } else {
-        this.isSelectAll = false;
+        this.gridActionsService.setIsSelected(false);
+        // this.isSelectAll = false;
       }
       this.cdr.detectChanges();
     }, 2000);
@@ -135,6 +130,20 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
   onGridReady(params: GridOptions) {
     this.gridApi = params.api;
     this.gridApiService.gridApi$.next(params);
+  }
+
+  onRowSelected(event) {
+    var rowCount = event.api.getSelectedNodes().length;
+
+    let tempCount = [];
+    this.gridOptions.api.forEachNode((node) => {
+      tempCount.push(node.data);
+    });
+    if (tempCount.length === rowCount) {
+      this.isSelectAll = true;
+    } else {
+      this.isSelectAll = false;
+    }
   }
 
   tabToNextCell(params) {
@@ -159,6 +168,7 @@ export class GridWrapperComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onSelectAll() {
     this.isSelectAll = !this.isSelectAll;
+    this.gridActionsService.setIsSelected(this.isSelectAll);
     this.gridOptions.api.forEachNode((node) => {
       if (this.isSelectAll) {
         node.setSelected(true);
